@@ -103,10 +103,17 @@ figure { margin: 0; }
 .angka dt { color: var(--redup); font-size: 14.5px; }
 .angka dd { margin: 0; color: var(--tinta); font-size: 38px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
 
-.teknologi { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 34px; margin-top: 56px; padding: 20px 28px; border: 1px solid var(--garis); border-radius: var(--sudut-besar); background: var(--putih); box-shadow: var(--bayang); }
-.teknologi p { margin: 0; color: var(--tinta); font-size: 17px; font-weight: 700; }
-.teknologi ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 30px; list-style: none; }
-.teknologi li { color: #7D879C; font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+.teknologi { display: flex; align-items: center; gap: 14px; margin-top: 56px; padding: 18px 22px; border: 1px solid var(--garis); border-radius: var(--sudut-besar); background: var(--putih); box-shadow: var(--bayang); }
+.teknologi > p { flex-shrink: 0; margin: 0 10px 0 4px; color: var(--tinta); font-size: 18px; font-weight: 700; }
+.tek-daftar { display: flex; gap: 44px; flex: 1; min-width: 0; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x proximity; scrollbar-width: none; list-style: none; padding: 6px 2px; }
+.tek-daftar::-webkit-scrollbar { display: none; }
+.tek-daftar li { display: flex; align-items: center; gap: 10px; flex-shrink: 0; scroll-snap-align: start; }
+.tek-daftar svg { width: 30px; height: 30px; flex-shrink: 0; }
+.tek-daftar span { color: var(--tinta-2); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+.tek-btn { flex-shrink: 0; display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 50%; background: none; color: var(--redup); font-size: 24px; line-height: 1; cursor: pointer; transition: opacity .15s, background-color .15s, transform .15s; }
+.tek-btn:hover { background: var(--kabut); color: var(--tinta); }
+.tek-btn:active { transform: scale(.94); }
+.tek-btn:disabled { opacity: .25; cursor: default; }
 
 /* ---------- Bagian umum ---------- */
 .sec { padding: var(--jarak) 0; }
@@ -402,7 +409,9 @@ figure { margin: 0; }
   .cta .btn { width: 100%; }
   .angka { gap: 14px 30px; }
   .angka dd { font-size: 30px; }
-  .teknologi { margin-top: 40px; padding: 16px; }
+  .teknologi { margin-top: 40px; padding: 14px 10px; }
+  .teknologi > p { display: none; }
+  .tek-daftar { gap: 30px; }
   .hp { right: -6px; width: 168px; }
   .langkah { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .langkah::before { display: none; }
