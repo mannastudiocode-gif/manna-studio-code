@@ -1,0 +1,4 @@
+# Baru berlaku penuh setelah memakai domain sendiri (www.mannastudiocode.com)
+User-agent: *
+Disallow: /admin/
+Sitemap: https://mannastudiocode-gif.github.io/manna-studio-code/sitemap.xml

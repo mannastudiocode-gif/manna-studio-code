@@ -53,32 +53,64 @@
     clearTimeout(t._h); t._h = setTimeout(() => (t.hidden = true), 3500);
   }
 
+  function pesanError(e) {
+    const m = String((e && e.message) || '');
+    if (/failed to fetch|networkerror|load failed/i.test(m)) return 'Tidak tersambung ke internet. Periksa koneksi, lalu coba lagi.';
+    if (/jwt|expired|not authenticated|invalid claim/i.test(m)) return 'Sesi login sudah habis. Muat ulang halaman, lalu masuk lagi.';
+    if (/duplicate key|unique/i.test(m)) return 'Nomor itu sudah dipakai. Gunakan nomor lain.';
+    if (/foreign key|violates/i.test(m)) return 'Data ini masih dipakai di tempat lain, jadi belum bisa diubah atau dihapus.';
+    if (/payload too large|exceeded the maximum/i.test(m)) return 'File terlalu besar. Batasnya 50 MB per file.';
+    if (/permission denied|row-level security/i.test(m)) return 'Akun ini tidak punya akses untuk tindakan itu.';
+    return m || 'Tindakan tadi gagal. Coba lagi.';
+  }
+
   async function aman(fn, ok) {
     try { const r = await fn(); if (ok) toast(ok); return r; }
-    catch (e) { console.error(e); toast(e.message || 'Terjadi kesalahan', true); throw e; }
+    catch (e) { console.error(e); toast(pesanError(e), true); throw e; }
   }
 
   // ---------------- Modal ----------------
-  let onClose = null;
+  let onClose = null, asalFokus = null;
+  const FOKUS = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, iframe, video[controls]';
   function modal(title, html, { wide = false, full = false } = {}) {
+    if ($('#modal').hidden) asalFokus = document.activeElement;
     $('#modal-title').textContent = title;
     $('#modal-body').innerHTML = html;
     const box = $('#modal .modal-box');
     box.className = 'modal-box' + (wide ? ' wide' : '') + (full ? ' full' : '');
     $('#modal').hidden = false;
+    setTimeout(() => {
+      const f = $('#modal-body').querySelector('input:not([type=hidden]), select, textarea, button') || $('#modal-x');
+      f.focus();
+    }, 0);
     return $('#modal-body');
   }
   function tutup() {
     $('#modal').hidden = true; $('#modal-body').innerHTML = '';
     if (onClose) { const f = onClose; onClose = null; f(); }
+    const asal = asalFokus; asalFokus = null;
+    // Halaman bisa digambar ulang setelah menyimpan; cari tombol pengganti dengan id yang sama.
+    setTimeout(() => {
+      const t = asal && (document.contains(asal) ? asal : (asal.id && document.getElementById(asal.id)));
+      (t || $('#view')).focus();
+    }, 0);
   }
   $('#modal-x').onclick = tutup;
   $('#modal').addEventListener('mousedown', e => { if (e.target.id === 'modal') tutup(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#modal').hidden) tutup(); });
+  document.addEventListener('keydown', e => {
+    if ($('#modal').hidden) return;
+    if (e.key === 'Escape') return tutup();
+    if (e.key !== 'Tab') return;
+    const el = [...$('#modal .modal-box').querySelectorAll(FOKUS)].filter(x => x.offsetParent !== null);
+    if (!el.length) return;
+    const awal = el[0], akhir = el[el.length - 1];
+    if (e.shiftKey && document.activeElement === awal) { e.preventDefault(); akhir.focus(); }
+    else if (!e.shiftKey && document.activeElement === akhir) { e.preventDefault(); awal.focus(); }
+  });
 
-  function tanya(pesan, label = 'Hapus') {
+  function tanya(judul, pesan, label) {
     return new Promise(ok => {
-      const b = modal('Konfirmasi', `<p>${esc(pesan)}</p>
+      const b = modal(judul, `<p>${esc(pesan)}</p>
         <div class="form-act"><button class="btn btn-ghost" data-n>Batal</button><button class="btn btn-danger" data-y>${esc(label)}</button></div>`);
       let jawab = false;
       onClose = () => ok(jawab);
@@ -111,13 +143,13 @@
         <div class="tile"><span>Pelanggan</span><b>${cache.pelanggan.length}</b><small>${cache.dokumen.length} dokumen tersimpan</small></div>
       </div>
       <section class="panel">
-        <div class="panel-head"><h2>Tagihan yang belum dibayar</h2><a href="#invoice" class="link">Semua invoice →</a></div>
+        <div class="panel-head"><h2>Tagihan yang belum dibayar</h2><a href="#invoice" class="link">Lihat semua invoice</a></div>
         ${belumSemua.length ? `<table class="tbl"><thead><tr><th>Nomor</th><th>Pelanggan</th><th>Tanggal</th><th>Jatuh tempo</th><th class="r">Total</th></tr></thead><tbody>
           ${belumSemua.map(i => {
             const lewat = i.jatuh_tempo && i.jatuh_tempo < hariIni;
             return `<tr><td><a href="#" data-lihat="${i.id}">${esc(i.nomor)}</a></td><td>${esc(pelangganOf(i.pelanggan_id)?.nama || '–')}</td>
               <td>${tgl(i.tanggal)}</td><td>${tgl(i.jatuh_tempo)}${lewat ? ' <span class="badge st-telat">⚠ Lewat jatuh tempo</span>' : ''}</td><td class="r">${rp(hitung(i).total)}</td></tr>`;
-          }).join('')}</tbody></table>` : '<p class="kosong">Tidak ada tagihan yang menunggu pembayaran.</p>'}
+          }).join('')}</tbody></table>` : '<p class="kosong">Semua tagihan sudah dibayar.</p>'}
       </section>`;
     $('#view').querySelectorAll('[data-lihat]').forEach(a => a.onclick = e => { e.preventDefault(); lihatInvoice(a.dataset.lihat); });
   }
@@ -126,7 +158,7 @@
   function vPelanggan() {
     $('#view').innerHTML = `
       <div class="head"><h1>Pelanggan</h1><button class="btn" id="tambah">+ Tambah pelanggan</button></div>
-      <div class="filter"><input type="search" id="cari" placeholder="Cari nama, unit, kontak…"></div>
+      <div class="filter"><input type="search" id="cari" aria-label="Cari pelanggan" placeholder="Cari nama, unit, kontak…"></div>
       <section class="panel"><div id="tabel"></div></section>`;
     const render = () => {
       const q = $('#cari').value.toLowerCase();
@@ -140,7 +172,7 @@
             <td>${p.telepon ? `<a href="https://wa.me/${esc(p.telepon.replace(/\D/g, '').replace(/^0/, '62'))}" target="_blank" rel="noopener">${esc(p.telepon)}</a>` : '–'}</td>
             <td class="r">${inv.length}</td><td class="r">${rp(inv.reduce((s, i) => s + hitung(i).total, 0))}</td>
             <td class="act"><button class="btn-sm btn-ghost btn" data-ubah="${p.id}">Ubah</button><button class="btn-sm btn-x btn" data-hapus="${p.id}">Hapus</button></td></tr>`;
-        }).join('')}</tbody></table>` : '<p class="kosong">Belum ada pelanggan.</p>';
+        }).join('')}</tbody></table>` : '<p class="kosong">Belum ada pelanggan. Tambahkan pelanggan pertama, lalu buat invoice untuknya.</p>';
       $('#tabel').querySelectorAll('[data-ubah]').forEach(b => b.onclick = () => formPelanggan(pelangganOf(b.dataset.ubah)));
       $('#tabel').querySelectorAll('[data-hapus]').forEach(b => b.onclick = () => hapusPelanggan(b.dataset.hapus));
     };
@@ -172,8 +204,8 @@
   }
 
   async function hapusPelanggan(id) {
-    if (cache.invoice.some(i => i.pelanggan_id === id)) return toast('Pelanggan ini masih punya invoice. Hapus atau pindahkan invoicenya dulu.', true);
-    if (!await tanya('Hapus pelanggan "' + pelangganOf(id).nama + '"?')) return;
+    if (cache.invoice.some(i => i.pelanggan_id === id)) return toast('Pelanggan ini masih punya invoice, jadi belum bisa dihapus.', true);
+    if (!await tanya('Hapus pelanggan ' + pelangganOf(id).nama + '?', 'Data pelanggan ini akan hilang dan tidak bisa dikembalikan.', 'Hapus pelanggan')) return;
     await aman(() => DB.remove('pelanggan', id), 'Pelanggan dihapus');
     await muat(); tampil();
   }
@@ -183,9 +215,9 @@
     $('#view').innerHTML = `
       <div class="head"><h1>Invoice</h1><button class="btn" id="tambah">+ Buat invoice</button></div>
       <div class="filter">
-        <input type="search" id="cari" placeholder="Cari nomor, pelanggan, perihal…">
-        <select id="fst"><option value="">Semua status</option>${Object.entries(STATUS).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select>
-        <select id="fth"><option value="">Semua tahun</option>${[...new Set(cache.invoice.map(i => String(i.tanggal).slice(0, 4)))].sort().reverse().map(y => `<option>${y}</option>`).join('')}</select>
+        <input type="search" id="cari" aria-label="Cari invoice" placeholder="Cari nomor, pelanggan, perihal…">
+        <select id="fst" aria-label="Saring status"><option value="">Semua status</option>${Object.entries(STATUS).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select>
+        <select id="fth" aria-label="Saring tahun"><option value="">Semua tahun</option>${[...new Set(cache.invoice.map(i => String(i.tanggal).slice(0, 4)))].sort().reverse().map(y => `<option>${y}</option>`).join('')}</select>
       </div>
       <section class="panel"><div id="tabel"></div></section>`;
     const render = () => {
@@ -204,19 +236,19 @@
             <button class="btn btn-sm btn-ghost" data-ubah="${i.id}">Ubah</button>
             ${i.status === 'belum' ? `<button class="btn btn-sm btn-ok" data-lunas="${i.id}">Tandai lunas</button>` : ''}
             <button class="btn btn-sm btn-x" data-hapus="${i.id}">Hapus</button>
-          </td></tr>`).join('')}</tbody></table>` : '<p class="kosong">Belum ada invoice.</p>';
+          </td></tr>`).join('')}</tbody></table>` : '<p class="kosong">Belum ada invoice yang cocok. Klik Buat invoice untuk membuat tagihan baru.</p>';
       const on = (a, fn) => $('#tabel').querySelectorAll(`[data-${a}]`).forEach(b => b.onclick = () => fn(b.dataset[a]));
       on('lihat', lihatInvoice);
       on('ubah', id => formInvoice(cache.invoice.find(i => i.id === id)));
       on('lunas', tandaiLunas);
       on('hapus', async id => {
         const inv = cache.invoice.find(i => i.id === id);
-        if (!await tanya('Hapus invoice ' + inv.nomor + '? Sebaiknya ubah status menjadi "Batal" agar nomor tetap tercatat.')) return;
+        if (!await tanya('Hapus invoice ' + inv.nomor + '?', 'Invoice yang dihapus tidak bisa dikembalikan, dan nomornya akan hilang dari urutan. Kalau tagihan ini dibatalkan, lebih baik ubah statusnya menjadi Batal.', 'Hapus invoice')) return;
         await aman(() => DB.remove('invoice', id), 'Invoice dihapus'); await muat(); tampil();
       });
     };
     ['cari', 'fst', 'fth'].forEach(id => $('#' + id).oninput = render);
-    $('#tambah').onclick = () => cache.pelanggan.length ? formInvoice() : toast('Tambahkan pelanggan terlebih dahulu.', true);
+    $('#tambah').onclick = () => cache.pelanggan.length ? formInvoice() : toast('Invoice butuh data pelanggan. Tambahkan pelanggan dulu di menu Pelanggan.', true);
     render();
   }
 
@@ -224,7 +256,7 @@
     const inv = cache.invoice.find(i => i.id === id);
     const b = modal('Tandai lunas: ' + inv.nomor, `<form class="form" id="f">
       <label class="full">Tanggal pembayaran diterima<input type="date" name="tanggal_bayar" value="${today()}" required></label>
-      <div class="form-act full"><button type="button" class="btn btn-ghost" data-batal>Batal</button><button class="btn btn-ok">Simpan</button></div></form>`);
+      <div class="form-act full"><button type="button" class="btn btn-ghost" data-batal>Batal</button><button class="btn btn-ok">Tandai lunas</button></div></form>`);
     b.querySelector('[data-batal]').onclick = tutup;
     b.querySelector('#f').onsubmit = async e => {
       e.preventDefault();
@@ -258,11 +290,11 @@
     const tbody = b.querySelector('#items');
     const baris = it => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td><input data-k="uraian" value="${esc(it.uraian)}" required></td>
-        <td><input data-k="qty" type="number" min="0" step="any" value="${esc(it.qty)}"></td>
-        <td><input data-k="satuan" value="${esc(it.satuan || '')}"></td>
-        <td><input data-k="harga" type="number" min="0" step="any" value="${esc(it.harga)}"></td>
-        <td class="r" data-j></td><td><button type="button" class="x" title="Hapus baris">×</button></td>`;
+      tr.innerHTML = `<td><input data-k="uraian" aria-label="Uraian" value="${esc(it.uraian)}" required></td>
+        <td><input data-k="qty" aria-label="Jumlah" type="number" min="0" step="any" value="${esc(it.qty)}"></td>
+        <td><input data-k="satuan" aria-label="Satuan" value="${esc(it.satuan || '')}"></td>
+        <td><input data-k="harga" aria-label="Harga satuan" type="number" min="0" step="any" value="${esc(it.harga)}"></td>
+        <td class="r" data-j></td><td><button type="button" class="x" title="Hapus baris" aria-label="Hapus baris">×</button></td>`;
       tr.querySelector('.x').onclick = () => { if (tbody.children.length > 1) { tr.remove(); ulang(); } };
       tbody.appendChild(tr);
     };
@@ -357,14 +389,14 @@
   // ---------------- Halaman: Dokumen ----------------
   function vDokumen() {
     $('#view').innerHTML = `
-      <div class="head"><h1>Dokumen Perusahaan</h1><button class="btn" id="tambah">+ Unggah dokumen</button></div>
+      <div class="head"><h1>Dokumen perusahaan</h1><button class="btn" id="tambah">+ Unggah dokumen</button></div>
       <div class="filter">
-        <input type="search" id="cari" placeholder="Cari judul, nama file, keterangan…">
-        <select id="fkat"><option value="">Semua kategori</option>${KATEGORI.map(k => `<option>${k}</option>`).join('')}</select>
-        <select id="fpel"><option value="">Semua pelanggan</option>${cache.pelanggan.map(p => `<option value="${p.id}">${esc(p.nama)}</option>`).join('')}</select>
+        <input type="search" id="cari" aria-label="Cari dokumen" placeholder="Cari judul, nama file, keterangan…">
+        <select id="fkat" aria-label="Saring kategori"><option value="">Semua kategori</option>${KATEGORI.map(k => `<option>${k}</option>`).join('')}</select>
+        <select id="fpel" aria-label="Saring pelanggan"><option value="">Semua pelanggan</option>${cache.pelanggan.map(p => `<option value="${p.id}">${esc(p.nama)}</option>`).join('')}</select>
       </div>
       <section class="panel"><div id="tabel"></div></section>`;
-    const ikon = t => /pdf/.test(t) ? '📕' : /image/.test(t) ? '🖼️' : /video/.test(t) ? '🎬' : /sheet|excel|csv/.test(t) ? '📗' : /word|document/.test(t) ? '📘' : '📄';
+    const ikon = t => `<span class="jenis">${/pdf/.test(t) ? 'PDF' : /image/.test(t) ? 'Gambar' : /video/.test(t) ? 'Video' : /sheet|excel|csv/.test(t) ? 'Excel' : /word|document/.test(t) ? 'Word' : 'File'}</span>`;
     const render = () => {
       const q = $('#cari').value.toLowerCase(), k = $('#fkat').value, pl = $('#fpel').value;
       const rows = cache.dokumen.filter(d => (!k || d.kategori === k) && (!pl || d.pelanggan_id === pl) &&
@@ -375,13 +407,13 @@
           <td><span class="chip">${esc(d.kategori)}</span></td><td>${tgl(d.tanggal)}</td>
           <td>${esc(pelangganOf(d.pelanggan_id)?.nama || '–')}</td>
           <td class="act"><button class="btn btn-sm" data-buka="${d.id}">Buka</button><button class="btn btn-sm btn-ghost" data-ubah="${d.id}">Ubah</button><button class="btn btn-sm btn-x" data-hapus="${d.id}">Hapus</button></td></tr>`).join('')}
-        </tbody></table>` : '<p class="kosong">Belum ada dokumen.</p>';
+        </tbody></table>` : '<p class="kosong">Belum ada dokumen yang cocok. Unggah akta, kontrak, atau surat penawaran supaya bisa dibuka dari mana saja.</p>';
       const on = (a, fn) => $('#tabel').querySelectorAll(`[data-${a}]`).forEach(b => b.onclick = e => { e.preventDefault(); fn(b.dataset[a]); });
       on('buka', bukaDokumen);
       on('ubah', id => formDokumen(cache.dokumen.find(d => d.id === id)));
       on('hapus', async id => {
         const d = cache.dokumen.find(x => x.id === id);
-        if (!await tanya('Hapus dokumen "' + d.judul + '" beserta filenya?')) return;
+        if (!await tanya('Hapus dokumen ' + d.judul + '?', 'Filenya ikut terhapus dan tidak bisa dikembalikan.', 'Hapus dokumen')) return;
         await aman(async () => { await DB.removeFile(d.path).catch(() => {}); await DB.remove('dokumen', id); }, 'Dokumen dihapus');
         await muat(); tampil();
       });
@@ -434,13 +466,13 @@
       const u = await DB.fileUrl(d.path);
       // Ambil sebagai blob supaya PDF/gambar tampil di dalam halaman, bukan terunduh.
       url = u.startsWith('blob:') ? u : URL.createObjectURL(await (await fetch(u)).blob());
-    } catch (e) { b.innerHTML = `<p class="kosong">Gagal membuka: ${esc(e.message)}</p>`; return; }
+    } catch (e) { b.innerHTML = `<p class="kosong">Dokumen tidak bisa dibuka. ${esc(pesanError(e))}</p>`; return; }
     onClose = () => URL.revokeObjectURL(url);
     const t = d.tipe || '';
     const isi = /pdf/.test(t) ? `<iframe src="${url}" class="pv-frame" title="${esc(d.judul)}"></iframe>`
       : /image/.test(t) ? `<div class="pv-img"><img src="${url}" alt="${esc(d.judul)}"></div>`
       : /video/.test(t) ? `<video src="${url}" controls class="pv-frame"></video>`
-      : /text|csv/.test(t) ? `<iframe src="${url}" class="pv-frame" title="${esc(d.judul)}"></iframe>`
+      : /^text\/(plain|csv)/.test(t) ? `<iframe src="${url}" class="pv-frame" sandbox title="${esc(d.judul)}"></iframe>`
       : `<div class="kosong">File jenis ini (${esc(d.nama_file || t)}) tidak dapat ditampilkan langsung di browser.<br>Silakan unduh lalu buka dengan aplikasi yang sesuai.</div>`;
     b.innerHTML = `<div class="pv-bar"><span class="muted">${esc(d.kategori)} · ${tgl(d.tanggal)} · ${esc(d.nama_file || '')} · ${ukuran(d.ukuran)}</span>
       <a class="btn btn-ghost btn-sm" href="${url}" download="${esc(d.nama_file || d.judul)}">⬇ Unduh</a></div>${isi}`;
@@ -468,7 +500,7 @@
     $('#who').textContent = u.email;
     $('#demo-bar').hidden = !DB.demo;
     $('#logout').hidden = DB.demo;
-    try { await muat(); } catch { $('#view').innerHTML = '<p class="kosong">Data tidak dapat dimuat. Pastikan email Anda terdaftar di tabel admin_email.</p>'; return; }
+    try { await muat(); } catch { $('#view').innerHTML = '<p class="kosong">Data tidak bisa dimuat. Akun ini mungkin belum diberi akses ke dashboard, atau koneksi terputus. Muat ulang halaman; kalau masih gagal, hubungi pengelola website.</p>'; return; }
     tampil();
   }
 
@@ -476,7 +508,7 @@
     e.preventDefault();
     const f = e.target; $('#login-err').textContent = '';
     try { await DB.login(f.email.value, f.password.value); mulai(); }
-    catch (err) { $('#login-err').textContent = /invalid/i.test(err.message) ? 'Email atau kata sandi salah.' : err.message; }
+    catch (err) { $('#login-err').textContent = /invalid/i.test(err.message) ? 'Email atau kata sandi salah. Periksa lagi, lalu coba masuk.' : pesanError(err); }
   };
   $('#logout').onclick = async () => { await DB.logout(); location.hash = ''; mulai(); };
 

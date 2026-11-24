@@ -4,9 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://zkqowxhnytlkmqnkqwff.supabase.co wss://zkqowxhnytlkmqnkqwff.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; frame-src blob:; media-src blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Dashboard — Manna Studio Code</title>
   <link rel="icon" href="../assets/msc-logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Public+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
 </head>
 <body>
@@ -14,25 +16,26 @@
 <!-- Login -->
 <section id="login" class="login" hidden>
   <form class="login-box" id="login-form">
-    <img src="../assets/msc-logo.png" alt="Manna Studio Code">
-    <h1>Masuk Dashboard</h1>
-    <label>Email<input type="email" name="email" required autocomplete="username"></label>
+    <img src="../assets/msc-logo-400.png" alt="Manna Studio Code" width="400" height="120">
+    <h1>Masuk ke dashboard</h1>
+    <label>Email<input type="email" name="email" required autocomplete="username" spellcheck="false" autocapitalize="off"></label>
     <label>Kata sandi<input type="password" name="password" required autocomplete="current-password"></label>
     <button class="btn" type="submit">Masuk</button>
-    <p class="err" id="login-err"></p>
-    <a href="../" class="back">← Kembali ke website</a>
+    <p class="err" id="login-err" role="alert"></p>
+    <a href="../" class="back">Kembali ke website</a>
   </form>
 </section>
 
 <!-- Aplikasi -->
+<a class="skip" href="#view">Langsung ke isi</a>
 <div id="app" class="app" hidden>
   <aside class="side">
-    <img src="../assets/msc-logo.png" alt="Manna Studio Code" class="side-logo">
-    <nav id="menu">
-      <a href="#ringkasan">📊 Ringkasan</a>
-      <a href="#pelanggan">👥 Pelanggan</a>
-      <a href="#invoice">🧾 Invoice</a>
-      <a href="#dokumen">📁 Dokumen</a>
+    <img src="../assets/msc-logo-400.png" alt="Manna Studio Code" class="side-logo" width="400" height="120">
+    <nav id="menu" aria-label="Menu dashboard">
+      <a href="#ringkasan">Ringkasan</a>
+      <a href="#pelanggan">Pelanggan</a>
+      <a href="#invoice">Invoice</a>
+      <a href="#dokumen">Dokumen</a>
     </nav>
     <div class="side-foot">
       <span id="who"></span>
@@ -43,22 +46,22 @@
     <div id="demo-bar" class="demo-bar" hidden>
       <b>Mode demo.</b> Data hanya tersimpan di browser ini dan akan hilang jika riwayat browser dibersihkan. Isi <code>js/config.js</code> dengan kunci Supabase untuk menyimpan data secara online.
     </div>
-    <div id="view"></div>
+    <div id="view" tabindex="-1"></div>
   </main>
 </div>
 
 <!-- Modal -->
 <div id="modal" class="modal" hidden>
-  <div class="modal-box">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <header><h2 id="modal-title"></h2><button class="x" id="modal-x" aria-label="Tutup">×</button></header>
     <div id="modal-body"></div>
   </div>
 </div>
 
-<div id="toast" class="toast" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 <div id="print-area"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.2/dist/umd/supabase.js" integrity="sha384-A97u3Qnt9GZHURO9YJZRe7VQgGUeFzcv6I1oIGnUTxQrCxnpQMwR0/G8F2zt9abZ" crossorigin="anonymous"></script>
 <script src="../js/config.js"></script>
 <script src="data.js"></script>
 <script src="app.js"></script>
