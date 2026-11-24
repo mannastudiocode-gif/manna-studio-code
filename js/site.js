@@ -24,6 +24,21 @@ menuBtn.addEventListener('click', () => {
 document.querySelectorAll('.links a').forEach(a => a.addEventListener('click', tutupMenu));
 
 /* ---------- Pekerjaan ---------- */
+// Ilustrasi tampilan aplikasi (bukan tangkapan layar asli: tanpa data pribadi)
+function ilustrasi(jenis) {
+  const ulang = (n, f) => Array.from({ length: n }, (_, i) => f(i)).join('');
+  switch (jenis) {
+    case 'ceklis': return `<div class="v-ceklis">${ulang(3, i => `<p><i class="${i < 2 ? 'ya' : ''}"></i><b style="width:${[70, 55, 62][i]}%"></b></p>`)}</div>`;
+    case 'chat': return `<div class="v-chat"><i class="kiri"></i><i class="kanan"></i><i class="kiri pendek"></i></div>`;
+    case 'progres': return `<div class="v-progres">${ulang(4, i => `<p><b style="width:${[86, 64, 92, 48][i]}%"></b></p>`)}</div>`;
+    case 'tabel': return `<div class="v-tabel"><p class="kepala"><b></b><b></b><b></b></p>${ulang(3, () => '<p><b></b><b></b><b></b></p>')}</div>`;
+    case 'cincin': return `<div class="v-cincin"><span>86%</span></div>`;
+    case 'kalender': return `<div class="v-kalender">${ulang(21, i => `<i class="${[4, 9, 10, 16].includes(i) ? 'on' : ''}"></i>`)}</div>`;
+    case 'perisai': return `<div class="v-perisai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.6-3.4 8.3-8 9-4.6-.7-8-4.4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>`;
+    default: return `<div class="v-web"><b></b><span class="besar"></span><span></span><span></span><span></span></div>`;
+  }
+}
+
 const gambarHtml = (g, besar) => `
   <button type="button" class="shot${besar ? ' shot-besar' : ''}" data-src="${esc(g.src)}" data-ket="${esc(g.ket)}" aria-label="Perbesar: ${esc(g.ket)}">
     <img src="${esc(g.src)}" alt="${esc(g.ket)}" loading="lazy" width="1400" height="${besar ? 618 : 941}">
@@ -58,7 +73,7 @@ function tampilPekerjaan(list) {
 
   $('#porto-list').innerHTML = list.filter(p => !p.masalah).map(p => `
     <article class="proyek">
-      ${p.singkat ? `<span class="monogram" aria-hidden="true">${esc(p.singkat)}</span>` : ''}
+      <div class="thumb t-${esc(p.visual || 'web')}" aria-hidden="true">${ilustrasi(p.visual)}${p.singkat ? `<span class="monogram">${esc(p.singkat)}</span>` : ''}</div>
       <h3>${esc(p.judul)}</h3>
       <p class="proyek-klien">${esc(p.instansi)}${p.tahun ? ', ' + esc(p.tahun) : ''}</p>
       <p class="proyek-satu">${esc(p.satu_baris || p.ringkas)}</p>
@@ -192,4 +207,5 @@ $('#minta-penawaran').addEventListener('submit', e => { e.preventDefault(); kiri
   akar.querySelector('.wa-tutup').addEventListener('click', tutup);
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) tutup(); });
   form.addEventListener('submit', e => { e.preventDefault(); kirimPenawaran(form); });
+  document.querySelectorAll('.ajak-wa').forEach(a => a.addEventListener('click', e => { e.preventDefault(); tampil(); }));
 })();

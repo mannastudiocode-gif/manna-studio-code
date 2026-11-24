@@ -681,3 +681,78 @@ a.proyek-domain { display: inline-flex; align-items: center; min-height: 40px; o
 @media (max-width: 1040px) { .porto { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px)  { .porto { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 640px) { .mini-chat .pendek { display: none; } }
+
+/* ==========================================================================
+   Kartu portofolio bergambar, pita teknologi, pita ajakan
+   ========================================================================== */
+.proyek { padding: 10px 10px 16px; }
+.proyek > :not(.thumb) { margin-left: 10px; margin-right: 10px; }
+.proyek .proyek-domain { margin-left: 10px; }
+
+/* Ilustrasi: radius 8 = 14 (kartu) - ~6 jarak, konsentris dengan padding 10 */
+.thumb { position: relative; height: 132px; margin-bottom: 14px; padding: 16px; overflow: hidden; border-radius: 8px; background: var(--kabut); }
+.thumb .monogram { position: absolute; left: 12px; bottom: 12px; margin: 0; box-shadow: 0 6px 16px -6px rgba(15, 61, 62, .5); }
+.t-chat, .t-cincin, .t-perisai, .t-web { background: var(--laut); }
+.t-progres, .t-kalender { background: var(--tag-bg); }
+
+.v-ceklis { display: grid; gap: 10px; margin-left: 64px; }
+.v-ceklis p { display: flex; align-items: center; gap: 8px; margin: 0; }
+.v-ceklis i { width: 16px; height: 16px; border-radius: 4px; border: 2px solid #A9BAB8; }
+.v-ceklis i.ya { border-color: var(--laut-2); background: var(--laut-2); }
+.v-ceklis b { height: 8px; border-radius: 99px; background: #CBD8D6; }
+
+.v-chat { display: flex; flex-direction: column; gap: 8px; margin-left: 56px; }
+.v-chat i { height: 20px; border-radius: 10px; }
+.v-chat .kiri { width: 70%; background: var(--putih); border-top-left-radius: 3px; }
+.v-chat .kanan { width: 55%; align-self: flex-end; background: var(--kunyit); border-top-right-radius: 3px; }
+.v-chat .pendek { width: 40%; }
+
+.v-progres { display: grid; gap: 9px; margin-left: 64px; }
+.v-progres p { height: 10px; margin: 0; border-radius: 99px; background: rgba(15, 61, 62, .12); overflow: hidden; }
+.v-progres b { display: block; height: 100%; border-radius: 99px; background: var(--laut-2); }
+.v-progres p:nth-child(3) b { background: var(--kunyit); }
+
+.v-tabel { display: grid; gap: 6px; margin-left: 64px; }
+.v-tabel p { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; margin: 0; }
+.v-tabel b { height: 12px; border-radius: 3px; background: var(--putih); box-shadow: 0 0 0 1px var(--garis); }
+.v-tabel .kepala b { background: var(--laut); box-shadow: none; }
+
+.v-cincin { display: grid; place-items: center; height: 100%; }
+.v-cincin span {
+  display: grid; place-items: center; width: 88px; height: 88px; border-radius: 50%;
+  background: radial-gradient(closest-side, var(--laut) 72%, transparent 73% 100%), conic-gradient(var(--kunyit) 86%, rgba(184, 207, 204, .25) 0);
+  color: var(--putih); font-size: 17px; font-weight: 700;
+}
+
+.v-kalender { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-left: 64px; }
+.v-kalender i { aspect-ratio: 1; border-radius: 4px; background: var(--putih); }
+.v-kalender i.on { background: var(--laut-2); }
+.v-kalender i.on:nth-of-type(11) { background: var(--kunyit); }
+
+.v-perisai { display: grid; place-items: center; height: 100%; color: var(--kunyit); }
+.v-perisai svg { width: 64px; height: 64px; }
+
+.v-web { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 10px 1fr 22px; gap: 6px; height: 100%; margin-left: 56px; }
+.v-web b { grid-column: 1 / -1; border-radius: 3px; background: rgba(184, 207, 204, .45); }
+.v-web .besar { grid-column: 1 / -1; border-radius: 5px; background: var(--laut-2); }
+.v-web span:not(.besar) { border-radius: 5px; background: rgba(255, 255, 255, .85); }
+
+.proyek:hover .thumb .monogram { background: var(--laut-2); }
+
+/* Pita teknologi */
+.teknologi { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px; margin-top: 34px; padding: 18px 24px; border-radius: var(--sudut-besar); background: var(--kabut); }
+.teknologi p { margin: 0; color: var(--redup); font-size: 14px; font-weight: 600; }
+.teknologi ul { display: flex; flex-wrap: wrap; gap: 8px 26px; list-style: none; }
+.teknologi li { color: var(--tinta-2); font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+
+/* Pita ajakan */
+.ajak { background: var(--laut-2); color: var(--putih); }
+.ajak-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 40px; padding-block: 44px; }
+.ajak h2 { font-size: clamp(24px, 2.6vw, 32px); }
+.ajak p { max-width: 40em; margin: 8px 0 0; color: #DCEBE9; }
+.ajak :focus-visible { outline-color: var(--putih); }
+
+@media (max-width: 560px) {
+  .ajak .btn { width: 100%; }
+  .teknologi { padding: 16px; }
+}

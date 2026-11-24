@@ -51,7 +51,8 @@
     "sesudah": "Persyaratan, ceklis berkas, dan chatbot bisa dibuka kapan saja. Konsultasi dan pengaduan, termasuk lewat WhatsApp, masuk ke satu panel petugas.",
     "url": "https://klinikpbg.bengkuluselatankab.go.id/",
     "singkat": "PBG",
-    "satu_baris": "Persyaratan, konsultasi, dan pengaduan PBG secara online."
+    "satu_baris": "Persyaratan, konsultasi, dan pengaduan PBG secara online.",
+    "visual": "ceklis"
   },
   {
     "judul": "E-Aspirasi DPRD",
@@ -66,7 +67,8 @@
     "sebelum": "Aspirasi masyarakat datang lewat berbagai saluran sehingga sulit dilacak tindak lanjutnya.",
     "sesudah": "Aspirasi masuk lewat satu formulir, tindak lanjutnya tercatat, dan rekap per daerah pemilihan siap dipakai anggota dewan.",
     "singkat": "EA",
-    "satu_baris": "Saluran aspirasi masyarakat untuk anggota DPRD."
+    "satu_baris": "Saluran aspirasi masyarakat untuk anggota DPRD.",
+    "visual": "chat"
   },
   {
     "judul": "e-SAKIP",
@@ -83,7 +85,8 @@
     "sesudah": "IKU, pohon kinerja, Renja, dan perjanjian kinerja diisi setiap OPD di satu aplikasi; riwayat antartahun tersimpan dan bisa diunduh dalam PDF.",
     "url": "https://e-sakip.bengkuluselatankab.go.id/",
     "singkat": "SKP",
-    "satu_baris": "Perjanjian dan capaian kinerja setiap OPD."
+    "satu_baris": "Perjanjian dan capaian kinerja setiap OPD.",
+    "visual": "progres"
   },
   {
     "judul": "e-Monev",
@@ -99,7 +102,8 @@
     "sesudah": "Formulir perencanaan diisi langsung, dan rekap Renja terhadap RPJMD maupun SIPD tersusun otomatis per tahun anggaran.",
     "url": "https://e-monev.bengkuluselatankab.go.id/",
     "singkat": "MV",
-    "satu_baris": "Perencanaan dan rekap Renja per tahun anggaran."
+    "satu_baris": "Perencanaan dan rekap Renja per tahun anggaran.",
+    "visual": "tabel"
   },
   {
     "judul": "SIMENTIK",
@@ -116,7 +120,8 @@
     "sesudah": "Pemantauan dan evaluasi kinerja internal dicatat di satu aplikasi per tahun.",
     "url": "https://simentiks.bengkuluselatankab.go.id/",
     "singkat": "SMK",
-    "satu_baris": "Pemantauan dan evaluasi kinerja internal."
+    "satu_baris": "Pemantauan dan evaluasi kinerja internal.",
+    "visual": "cincin"
   },
   {
     "judul": "Website Bappeda",
@@ -131,7 +136,8 @@
     "sesudah": "Admin kantor memperbarui profil, berita, dan dokumen perencanaan sendiri.",
     "url": "https://bappeda.bengkuluselatankab.go.id/",
     "singkat": "BPD",
-    "satu_baris": "Profil, berita, dan dokumen perencanaan."
+    "satu_baris": "Profil, berita, dan dokumen perencanaan.",
+    "visual": "web"
   },
   {
     "judul": "e-Agenda",
@@ -146,7 +152,8 @@
     "sesudah": "Agenda dan undangan antarbagian tercatat di satu tempat dan bisa dilihat bersama.",
     "url": "https://e-agenda.bengkuluselatankab.go.id/",
     "singkat": "AG",
-    "satu_baris": "Agenda kegiatan dan undangan Pemda."
+    "satu_baris": "Agenda kegiatan dan undangan Pemda.",
+    "visual": "kalender"
   },
   {
     "judul": "Pemeliharaan dan keamanan website",
@@ -158,6 +165,7 @@
       "Keamanan"
     ],
     "singkat": "PK",
-    "satu_baris": "Pembersihan malware dan pembaruan keamanan."
+    "satu_baris": "Pembersihan malware dan pembaruan keamanan.",
+    "visual": "perisai"
   }
 ]
