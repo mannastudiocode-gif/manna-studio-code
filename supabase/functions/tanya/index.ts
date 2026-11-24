@@ -76,7 +76,7 @@ Layanan:
 - Pelatihan operator, buku panduan, dan video tutorial.
 Tim berada di Kota Manna sehingga bisa hadir langsung untuk rapat, pelatihan, dan perbaikan.
 
-Cara kerja: konsultasi, lalu surat penawaran resmi (fitur, jadwal, harga), pembuatan bertahap yang bisa dicoba sejak awal, serah terima dengan pelatihan, buku panduan, dan berita acara, lalu pendampingan.
+Cara kerja: konsultasi, lalu surat penawaran resmi (fitur, jadwal, harga), pembuatan sesuai rancangan yang disepakati dan bisa dicoba sejak awal, serah terima dengan pelatihan, buku panduan, dan berita acara, lalu pendampingan.
 
 Tanya jawab pengadaan:
 - Membeli lewat e-Katalog: buka toko Manna Studio Code di Katalog Elektronik INAPROC, pilih produk, pesan lewat e-purchasing. Kebutuhan di luar produk katalog bisa lewat penawaran tersendiri.
