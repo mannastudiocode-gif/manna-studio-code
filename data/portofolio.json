@@ -2,7 +2,7 @@
   {
     "judul": "SIPANDAI",
     "nama_panjang": "Sistem Informasi Pengendalian Pembangunan Terintegrasi",
-    "instansi": "Setda Bengkulu Selatan",
+    "instansi": "Sekretariat Daerah",
     "klien": "Bagian Administrasi Pembangunan, Sekretariat Daerah",
     "tahun": 2026,
     "domain": "sipandai.bengkuluselatankab.go.id",
@@ -128,7 +128,7 @@
   },
   {
     "judul": "e-Agenda",
-    "instansi": "Setda Bengkulu Selatan",
+    "instansi": "Sekretariat Daerah",
     "klien": "Bagian Umum, Sekretariat Daerah",
     "domain": "e-agenda.bengkuluselatankab.go.id",
     "ringkas": "Agenda dan rencana kegiatan Pemerintah Daerah, termasuk pengiriman dan penerimaan undangan antarbagian.",

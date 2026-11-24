@@ -36,7 +36,6 @@ function tampilPekerjaan(list) {
   // Angka ringkas: dihitung dari data, bukan diketik manual
   const aplikasi = list.filter(p => p.domain).length;
   const instansi = [...new Set(list.map(p => p.instansi))];
-  $('#klien-list').innerHTML = instansi.map(k => `<li>${esc(k)}</li>`).join('');
   $('#angka').innerHTML += `
     <div><dt>Aplikasi dipakai</dt><dd>${aplikasi}</dd></div>
     <div><dt>Instansi</dt><dd>${instansi.length}</dd></div>`;
@@ -89,6 +88,8 @@ function tampilKatalog(list) {
 
 /* ---------- Tentang kami ---------- */
 function tampilProfil(p) {
+  // Deretan 'Dipakai oleh': urutan dari profil.json, bila ada
+  if (Array.isArray(p.klien) && p.klien.length) $('#klien-list').innerHTML = p.klien.map(k => `<li>${esc(k)}</li>`).join('');
   $('#tentang-isi').innerHTML = `
     ${p.tentang.map(t => `<p>${esc(t)}</p>`).join('')}
     <dl class="legal">
@@ -102,7 +103,10 @@ function tampilProfil(p) {
 }
 
 Promise.all([ambil('portofolio.json'), ambil('katalog.json'), ambil('profil.json')])
-  .then(([porto, katalog, profil]) => { tampilPekerjaan(porto); tampilKatalog(katalog); tampilProfil(profil); })
+  .then(([porto, katalog, profil]) => {
+    tampilPekerjaan(porto); tampilKatalog(katalog); tampilProfil(profil);
+    if (!Array.isArray(profil.klien)) $('#klien-list').innerHTML = [...new Set(porto.map(p => p.instansi))].map(k => `<li>${esc(k)}</li>`).join('');
+  })
   .catch(() => {
     const gagal = '<p class="muted">Bagian ini belum dapat dimuat. Muat ulang halaman ini.</p>';
     ['#porto-list', '#katalog-list', '#tentang-isi'].forEach(s => { if ($(s).textContent.includes('Memuat')) $(s).innerHTML = gagal; });

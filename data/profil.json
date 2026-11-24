@@ -32,7 +32,7 @@
       "isi": "Terdaftar di INAPROC"
     }
   ],
-  "_catatan": "Hanya isi 'legalitas' dan 'kbli' yang tampil di website. Nomor rekening sengaja tidak ditampilkan.",
+  "_catatan": "Hanya isi 'legalitas' dan 'kbli' yang tampil di website. Nomor rekening sengaja tidak ditampilkan. 'klien' menentukan isi dan urutan deretan 'Dipakai oleh' di website.",
   "kbli": [
     {
       "kode": "62012",
@@ -58,5 +58,12 @@
       "kode": "47411",
       "nama": "Perdagangan eceran komputer dan perlengkapannya"
     }
+  ],
+  "klien": [
+    "Sekretariat Daerah",
+    "Sekretariat DPRD",
+    "Bappeda",
+    "Dinas PUPR",
+    "Diskominfo"
   ]
 }
