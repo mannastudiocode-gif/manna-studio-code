@@ -340,7 +340,7 @@ figure { margin: 0; }
 
 /* ---------- Kaki ---------- */
 .foot { padding: 64px 0 0; border-top: 1px solid var(--garis); background: var(--putih); color: var(--tinta-2); font-size: 15px; }
-.foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 36px; }
+.foot-grid { display: grid; grid-template-columns: 1.25fr 1.2fr 1fr; gap: 48px; }
 .foot h2 { position: relative; margin-bottom: 20px; padding-bottom: 12px; color: var(--tinta); font-size: 18px; }
 .foot h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 36px; height: 3px; border-radius: 3px; background: var(--biru); }
 .foot ul { display: grid; gap: 10px; list-style: none; }
@@ -395,6 +395,7 @@ figure { margin: 0; }
   .katalog { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .unggul-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .foot-grid { grid-template-columns: 1fr 1fr; }
+  .foot-grid > :last-child { grid-column: 1 / -1; }
   .geser-kiri { left: -8px; } .geser-kanan { right: -8px; }
 }
 
@@ -428,3 +429,16 @@ figure { margin: 0; }
   .wa-apung.terbuka .wa-buka { display: none; }
   .wa-panel { width: 100%; max-height: 88vh; border-radius: var(--sudut-besar) var(--sudut-besar) 0 0; }
 }
+
+/* Footer: Data Perusahaan & Kontak */
+.foot .legal { gap: 10px; margin: 0; }
+.foot .legal dt { color: var(--redup); font-size: 13px; }
+.foot .legal dd { color: var(--tinta); font-size: 14.5px; font-weight: 600; }
+.foot .legal-detail { margin-top: 10px; }
+.foot-kontak { display: grid; gap: 12px; }
+.foot-kontak li { display: grid; gap: 1px; color: var(--tinta); font-size: 14.5px; }
+.foot-kontak span { color: var(--redup); font-size: 13px; }
+.foot-kontak a { color: var(--tinta); font-weight: 600; }
+.foot-kontak a:hover { color: var(--biru); }
+@media (max-width: 760px) { .foot-grid > :last-child { grid-column: auto; } }
+.foot-kontak p { margin: 0; }
