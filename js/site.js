@@ -42,7 +42,7 @@ function tampilPekerjaan(list) {
 
   // Studi kasus: proyek yang punya catatan masalah dan solusi
   $('#sorotan').innerHTML = list.filter(p => p.masalah).map(p => `
-    <article class="kasus">
+    <article class="kasus${p.gambar && p.gambar.length ? '' : ' kasus-teks-saja'}">
       <div class="kasus-teks">
         <p class="kasus-klien">${metaHtml(p)}</p>
         <h3>${esc(p.judul)}${p.nama_panjang ? `<span>${esc(p.nama_panjang)}</span>` : ''}</h3>

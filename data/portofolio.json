@@ -19,12 +19,6 @@
       "Rekap dan peringkat siap diunduh ke Excel untuk rapat pimpinan"
     ],
     "hasil": "Dipakai 41 Perangkat Daerah dan 211 unit SKPD untuk memantau pagu APBD 2026 sekitar Rp603,9 miliar.",
-    "gambar": [
-      {
-        "src": "assets/galeri/sipandai-beranda.jpg",
-        "ket": "Halaman depan SIPANDAI (sipandai.bengkuluselatankab.go.id)"
-      }
-    ],
     "url": "https://sipandai.bengkuluselatankab.go.id/"
   },
   {
@@ -37,20 +31,6 @@
     "tag": [
       "Layanan Publik",
       "WhatsApp"
-    ],
-    "gambar": [
-      {
-        "src": "assets/galeri/klinikpbg-persyaratan.jpg",
-        "ket": "Ceklis persyaratan berkas PBG untuk warga"
-      },
-      {
-        "src": "assets/galeri/klinikpbg-chatbot.jpg",
-        "ket": "Chatbot yang menjawab pertanyaan umum 24 jam"
-      },
-      {
-        "src": "assets/galeri/klinikpbg-panel-petugas.jpg",
-        "ket": "Panel petugas: rekap konsultasi dan pengaduan"
-      }
     ],
     "sebelum": "Warga perlu datang ke kantor untuk menanyakan persyaratan PBG, dan petugas menjawab pertanyaan yang sama berulang kali.",
     "sesudah": "Persyaratan, ceklis berkas, dan chatbot bisa dibuka kapan saja. Konsultasi dan pengaduan, termasuk lewat WhatsApp, masuk ke satu panel petugas.",

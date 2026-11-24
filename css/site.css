@@ -518,3 +518,14 @@ a.proyek-domain:hover { text-decoration-color: var(--laut-2); }
   .wa-apung.terbuka .wa-buka { display: none; }
   .wa-panel { width: 100%; max-height: 88vh; border-radius: var(--sudut-besar) var(--sudut-besar) 0 0; }
 }
+
+/* Studi kasus tanpa tangkapan layar: tiga kolom Masalah / Yang kami buat / Hasilnya */
+.kasus-teks-saja { grid-template-columns: minmax(0, 1fr); }
+.kasus-teks-saja .kasus-gambar { display: none; }
+.kasus-teks-saja dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 36px; }
+.kasus-teks-saja dt { grid-row: 1; margin-top: 4px; }
+.kasus-teks-saja dd { grid-row: 2; }
+@media (max-width: 1040px) {
+  .kasus-teks-saja dl { display: block; }
+  .kasus-teks-saja dt { margin-top: 18px; }
+}
