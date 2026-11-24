@@ -293,16 +293,6 @@ figure { margin: 0; }
 .ajak-kotak :focus-visible { outline-color: #fff; }
 
 /* ---------- e-Katalog ---------- */
-.katalog { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.produk { display: flex; flex-direction: column; padding: 26px 24px 18px; border: 1px solid var(--garis); border-radius: var(--sudut-besar); background: var(--putih); transition: box-shadow .15s, border-color .15s; }
-.produk:hover { border-color: #C5D3EA; box-shadow: var(--bayang); }
-.produk-jenis { align-self: flex-start; margin: 0 0 12px; padding: 2px 11px; border-radius: 99px; background: var(--biru-muda); color: var(--biru-tua); font-size: 13px; font-weight: 700; }
-.produk h3 { font-size: 19px; }
-.produk ul { display: grid; gap: 6px; margin-top: 14px; list-style: none; }
-.produk li { position: relative; padding-left: 22px; color: var(--tinta-2); font-size: 15px; }
-.produk li::before { content: ''; position: absolute; left: 0; top: .42em; width: 13px; height: 13px; border-radius: 50%; background: var(--biru-muda) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231D64D8' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12l4 4 8-8'/%3E%3C/svg%3E") center / 9px no-repeat; }
-.produk-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: auto; padding-top: 10px; font-weight: 600; text-underline-offset: 4px; }
-.katalog-cari { margin: 36px 0 0; text-align: center; }
 
 /* ---------- Keunggulan ---------- */
 .unggul { padding: var(--jarak) 0; color: #fff; background: radial-gradient(700px 400px at 90% 0%, rgba(255, 255, 255, .10), transparent 70%), var(--biru); }
@@ -392,8 +382,7 @@ figure { margin: 0; }
   .pengantar-in, .layanan-in { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .ilus { max-width: 560px; }
   .porto { grid-auto-columns: calc((100% - 20px) / 2); }
-  .katalog { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .unggul-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .unggul-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .foot-grid { grid-template-columns: 1fr 1fr; }
   .foot-grid > :last-child { grid-column: 1 / -1; }
 }
@@ -415,7 +404,7 @@ figure { margin: 0; }
   .layanan-grid { grid-template-columns: minmax(0, 1fr); }
   .porto { grid-auto-columns: 82%; }
   .geser-btn { width: 42px; height: 42px; }
-  .katalog, .unggul-grid, .faq, .foot-grid { grid-template-columns: minmax(0, 1fr); }
+  .unggul-grid, .faq, .foot-grid { grid-template-columns: minmax(0, 1fr); }
   .pita-btn, .pita-btn .btn { width: 100%; }
   .wa-apung { right: 14px; bottom: 14px; }
   .wa-buka { min-height: 58px; padding: 0 15px; }

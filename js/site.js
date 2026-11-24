@@ -163,16 +163,9 @@ function aturGeser() {
   }, 3000);
 }
 
-/* ---------- e-Katalog ---------- */
+/* ---------- e-Katalog: hanya jumlah produk di angka ringkas ---------- */
 function tampilKatalog(list) {
   $('#angka').innerHTML += `<div><dt>Produk di e-Katalog</dt><dd>${list.length}</dd></div>`;
-  $('#katalog-list').innerHTML = list.map(k => `
-    <article class="produk">
-      <p class="produk-jenis">${esc(k.jenis)}</p>
-      <h3>${esc(k.nama)}</h3>
-      <ul>${k.fitur.map(f => `<li>${esc(f)}</li>`).join('')}</ul>
-      ${k.url ? `<a class="produk-link" href="${esc(k.url)}" target="_blank" rel="noopener">Lihat di e-Katalog</a>` : ''}
-    </article>`).join('');
 }
 
 /* ---------- Tentang kami & klien ---------- */
@@ -195,7 +188,7 @@ Promise.all([ambil('portofolio.json'), ambil('katalog.json'), ambil('profil.json
   })
   .catch(() => {
     const gagal = '<p class="muted">Bagian ini belum dapat dimuat. Muat ulang halaman ini.</p>';
-    ['#porto-list', '#katalog-list', '#tentang-isi', '#data-perusahaan'].forEach(s => { if ($(s).textContent.includes('Memuat')) $(s).innerHTML = gagal; });
+    ['#porto-list', '#tentang-isi', '#data-perusahaan'].forEach(s => { if ($(s).textContent.includes('Memuat')) $(s).innerHTML = gagal; });
     $('#klien-list').innerHTML = '';
   });
 
