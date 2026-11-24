@@ -2,31 +2,67 @@
   {
     "jenis": "Aplikasi",
     "nama": "Aplikasi Pengendalian Pembangunan Daerah",
-    "fitur": ["Impor DPA langsung dari SIPD", "Realisasi keuangan dan fisik bulanan", "Kurva S dan tanda deviasi per OPD", "Garansi 6 bulan, kode diserahkan"]
+    "fitur": [
+      "Impor DPA langsung dari SIPD",
+      "Realisasi keuangan dan fisik bulanan",
+      "Kurva S dan tanda deviasi per OPD",
+      "Garansi 6 bulan, kode diserahkan"
+    ],
+    "url": "https://katalog.inaproc.id/manna-studio-code/aplikasi-pengendalian-dan-monitoring-pembangunan-daerah-realisasi-dpa-kurva-s-kode-sumber-diserahkan"
   },
   {
     "jenis": "Jasa",
     "nama": "Replikasi Aplikasi Web dan Android",
-    "fitur": ["Fungsi setara aplikasi lama", "Pemindahan data dan pelatihan", "Garansi perbaikan 12 bulan", "Kode sumber diserahkan"]
+    "fitur": [
+      "Fungsi setara aplikasi lama",
+      "Pemindahan data dan pelatihan",
+      "Garansi perbaikan 12 bulan",
+      "Kode sumber diserahkan"
+    ],
+    "url": "https://katalog.inaproc.id/manna-studio-code/jasa-replikasi-aplikasi-berbasis-web-dan-android-kode-sumber-diserahkan"
   },
   {
     "jenis": "Jasa",
     "nama": "Pemeliharaan Aplikasi Berbasis Web",
-    "fitur": ["WordPress, CodeIgniter, Yii2", "Pembaruan keamanan bulanan", "Pemindaian malware berkas dan database", "Tanggap insiden paling lambat 24 jam"]
+    "fitur": [
+      "WordPress, CodeIgniter, Yii2",
+      "Pembaruan keamanan bulanan",
+      "Pemindaian malware berkas dan database",
+      "Tanggap insiden paling lambat 24 jam"
+    ],
+    "url": "https://katalog.inaproc.id/manna-studio-code/jasa-pemeliharaan-dan-optimalisasi-aplikasi-berbasis-web-wordpress-codeigniter-yii2"
   },
   {
     "jenis": "Sewa",
     "nama": "Cloud Server VPS 4 vCPU, 8 GB RAM",
-    "fitur": ["80 GB SSD NVMe, 1 IPv4", "Pusat data di Indonesia", "Cadangan harian dan snapshot", "SLA 99,9%"]
+    "fitur": [
+      "80 GB SSD NVMe, 1 IPv4",
+      "Pusat data di Indonesia",
+      "Cadangan harian dan snapshot",
+      "SLA 99,9%"
+    ],
+    "url": "https://katalog.inaproc.id/manna-studio-code/sewa-cloud-server-vps-4-vcpu-8-gb-ram-80-gb-nvme-pusat-data-indonesia"
   },
   {
     "jenis": "Lisensi",
     "nama": "Claude Pro untuk Instansi Pemerintah",
-    "fitur": ["1 akun pengguna instansi", "Masa lisensi 1 atau 12 bulan", "Analisis dokumen, data, dan kode", "Faktur atas nama instansi"]
+    "fitur": [
+      "1 akun pengguna instansi",
+      "Masa lisensi 1 atau 12 bulan",
+      "Analisis dokumen, data, dan kode",
+      "Faktur atas nama instansi"
+    ],
+    "url": "https://katalog.inaproc.id/manna-studio-code/lisensi-ai-generatif-claude-pro-untuk-instansi-pemerintah-1-akun"
   },
   {
     "jenis": "Lisensi 1 tahun",
     "nama": "Paket Keamanan dan Produktivitas Website",
-    "fitur": ["SSL Wildcard dan Wordfence", "AIOS dan WP Activity Log", "Elementor Pro dan Zoom Pro", "Instalasi, pengaturan, dan pemeliharaan"]
+    "fitur": [
+      "SSL Wildcard dan Wordfence",
+      "AIOS dan WP Activity Log",
+      "Elementor Pro dan Zoom Pro",
+      "Instalasi, pengaturan, dan pemeliharaan"
+    ],
+    "url": "https://katalog.inaproc.id/manna-studio-code/paket-lengkap-lisensi-keamanan-dan-produktivitas-website-ssl-wildcard-zoom-pro-wordfence-wp-activity-log-elementor-pro-aios-instalasi-1-tahun"
   }
 ]

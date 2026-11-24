@@ -338,7 +338,7 @@
     return `<div class="inv">
       <div class="inv-kop">
         <img src="${logo}" alt="">
-        <div><b>${esc(P.nama)}</b><span>${esc(P.tagline)}</span><span>${esc(P.alamat)}</span><span>Telp/WA ${esc(P.telepon)} · ${esc(P.email)} · ${esc(P.web)}</span></div>
+        <div><b>${esc(P.nama)}</b><span>${esc(P.tagline)}</span><span>${esc(P.alamat)}</span><span>Telp ${esc(P.telepon)} · WA ${esc(P.wa || P.telepon)}</span><span>${esc(P.email)} · ${esc(P.web)}</span></div>
       </div>
       <div class="inv-top">
         <div class="inv-to"><small>Kepada Yth.</small>

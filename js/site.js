@@ -5,7 +5,7 @@
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const ambil = f => fetch('data/' + f, { cache: 'no-cache' }).then(r => { if (!r.ok) throw new Error(f); return r.json(); });
-const WA = '6285266556231';
+const WA = '6281271278201';
 
 $('#th').textContent = new Date().getFullYear();
 
@@ -52,6 +52,7 @@ function tampilPekerjaan(list) {
           <dt>Yang kami buat</dt><dd><ul>${(p.solusi || []).map(s => `<li>${esc(s)}</li>`).join('')}</ul></dd>
           ${p.hasil ? `<dt>Hasilnya</dt><dd class="kasus-hasil">${esc(p.hasil)}</dd>` : ''}
         </dl>
+        ${p.url ? `<a class="btn btn-kunyit kasus-buka" href="${esc(p.url)}" target="_blank" rel="noopener">Buka ${esc(p.judul)}</a>` : ''}
       </div>
       <div class="kasus-gambar">${(p.gambar || []).map(g => gambarHtml(g, true)).join('')}</div>
     </article>`).join('');
@@ -68,7 +69,8 @@ function tampilPekerjaan(list) {
         ${p.sebelum ? `<dl class="ubah"><div><dt>Sebelumnya</dt><dd>${esc(p.sebelum)}</dd></div><div><dt>Sekarang</dt><dd>${esc(p.sesudah)}</dd></div></dl>` : ''}
         ${tagHtml(p)}
       </div>
-      ${p.domain ? `<span class="proyek-domain" translate="no">${esc(p.domain)}</span>` : '<span></span>'}
+      ${p.url ? `<a class="proyek-domain" href="${esc(p.url)}" target="_blank" rel="noopener" translate="no">${esc(p.domain)}</a>`
+        : p.domain ? `<span class="proyek-domain" translate="no">${esc(p.domain)}</span>` : '<span></span>'}
       ${p.gambar ? `<div class="galeri">${p.gambar.map(g => gambarHtml(g)).join('')}</div>` : ''}
     </article>`).join('');
 }
@@ -81,6 +83,7 @@ function tampilKatalog(list) {
       <p class="produk-jenis">${esc(k.jenis)}</p>
       <h3>${esc(k.nama)}</h3>
       <ul>${k.fitur.map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+      ${k.url ? `<a class="produk-link" href="${esc(k.url)}" target="_blank" rel="noopener">Lihat di e-Katalog</a>` : ''}
     </article>`).join('');
 }
 

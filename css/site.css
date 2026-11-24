@@ -449,3 +449,13 @@ figure { margin: 0; }
 .ubah > div + div dt { color: var(--laut-2); }
 .ubah dd { margin: 4px 0 0; font-size: 15px; color: var(--tinta); }
 @media (max-width: 760px) { .ubah { grid-template-columns: 1fr; } .ubah > div + div { border-left: 0; border-top: 1px solid var(--garis); } }
+
+/* Tautan aplikasi & e-Katalog */
+a.proyek-domain { color: var(--laut-2); font-weight: 600; text-decoration: underline; text-decoration-color: var(--garis); text-underline-offset: 4px; }
+a.proyek-domain:hover { text-decoration-color: var(--laut-2); }
+.kasus-buka { margin-top: 26px; }
+.produk-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 10px; color: var(--laut-2); font-weight: 600; text-underline-offset: 4px; }
+.produk-link:hover { color: var(--laut); }
+.btn-laut { background: var(--laut); color: var(--putih); }
+.btn-laut:hover { background: var(--laut-2); }
+.katalog-cari { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
