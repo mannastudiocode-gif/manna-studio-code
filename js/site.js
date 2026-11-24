@@ -49,7 +49,7 @@ function tampilPekerjaan(list) {
         <dl>
           <dt>Masalah</dt><dd>${esc(p.masalah)}</dd>
           <dt>Yang kami buat</dt><dd><ul>${(p.solusi || []).map(s => `<li>${esc(s)}</li>`).join('')}</ul></dd>
-          ${p.hasil ? `<dt>Hasilnya</dt><dd class="kasus-hasil">${esc(p.hasil)}</dd>` : ''}
+          ${p.hasil || p.angka ? `<dt>Hasilnya</dt><dd class="kasus-hasil">${p.angka ? `<ul class="kasus-angka">${p.angka.map(a => `<li><b>${esc(a.nilai)}</b><span>${esc(a.label)}</span></li>`).join('')}</ul>` : ''}${p.hasil ? `<span class="kasus-hasil-teks">${esc(p.hasil)}</span>` : ''}</dd>` : ''}
         </dl>
         ${p.url ? `<a class="btn btn-kunyit kasus-buka" href="${esc(p.url)}" target="_blank" rel="noopener">Buka ${esc(p.judul)}</a>` : ''}
       </div>
@@ -59,6 +59,7 @@ function tampilPekerjaan(list) {
   $('#porto-list').innerHTML = list.filter(p => !p.masalah).map(p => `
     <article class="proyek${p.gambar ? ' proyek-galeri' : ''}">
       <div class="proyek-judul">
+        ${p.singkat ? `<span class="monogram" aria-hidden="true">${esc(p.singkat)}</span>` : ''}
         <h3>${esc(p.judul)}</h3>
         ${p.nama_panjang ? `<p class="proyek-panjang">${esc(p.nama_panjang)}</p>` : ''}
         <p>${metaHtml(p)}</p>
