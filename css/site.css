@@ -453,3 +453,7 @@ figure { margin: 0; }
   .tek-daftar { gap: 28px; }
   .tek-daftar span { font-size: 16px; }
 }
+
+/* e-Katalog: cukup ajakan ke toko INAPROC */
+#katalog .judul-tengah { margin-bottom: 0; }
+#katalog .katalog-cari { margin: 28px 0 0; }
