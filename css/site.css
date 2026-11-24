@@ -70,7 +70,7 @@ figure { margin: 0; }
   font: 600 16px/1.2 var(--huruf); text-decoration: none;
   transition: background-color .15s, border-color .15s, color .15s;
 }
-.btn:active { transform: translateY(1px); }
+.btn:active { transform: scale(.97); }
 .btn-kunyit { background: var(--kunyit); color: var(--tinta); }
 .btn-kunyit:hover { background: var(--kunyit-2); }
 .btn-garis { border-color: rgba(255, 255, 255, .45); color: var(--putih); }
@@ -145,7 +145,7 @@ figure { margin: 0; }
   background: var(--kabut); color: var(--tinta);
   box-shadow: 0 24px 50px -18px rgba(0, 0, 0, .6);
 }
-.hp-atas { margin: 0 -12px 10px; padding: 12px; border-radius: 18px 18px 0 0; background: var(--laut-2); color: var(--putih); font-size: 13px; font-weight: 700; }
+.hp-atas { margin: 0 -12px 10px; padding: 12px; border-radius: 20px 20px 0 0; background: var(--laut-2); color: var(--putih); font-size: 13px; font-weight: 700; }
 .gel { margin: 0 0 8px; padding: 8px 10px; border-radius: 12px; font-size: 12.5px; line-height: 1.4; }
 .gel-kiri { margin-right: 18px; background: var(--putih); border-top-left-radius: 4px; }
 .gel-kanan { margin-left: 18px; background: var(--kunyit); color: var(--tinta); border-top-right-radius: 4px; }
@@ -529,3 +529,30 @@ a.proyek-domain:hover { text-decoration-color: var(--laut-2); }
   .kasus-teks-saja dl { display: block; }
   .kasus-teks-saja dt { margin-top: 18px; }
 }
+
+/* ==========================================================================
+   Audit ulang desain terbaru
+   ========================================================================== */
+
+/* Pekerjaan: dua kolom di desktop supaya bagian ini tidak terlalu panjang */
+@media (min-width: 1041px) {
+  .porto { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .proyek { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 28px; }
+  .proyek-isi p { max-width: none; }
+}
+.proyek-judul h3 { text-wrap: balance; }
+/* Tautan situs aplikasi: area sentuh minimal 40px */
+a.proyek-domain { display: inline-flex; align-items: center; min-height: 40px; overflow-wrap: anywhere; }
+
+/* Umpan balik saat ditekan (bukan gerak yang tak diminta, jadi tetap aktif) */
+.btn, .wa-buka, .wa-tutup, .tanya-buka { transition-property: background-color, color, border-color, transform; transition-duration: .15s; }
+.wa-buka:active, .wa-tutup:active, .faq summary:active { transform: scale(.97); }
+
+/* Tombol WhatsApp: tepi lebih tegas di atas latar terang (kontras komponen 3:1) */
+.wa-buka { border: 2px solid #128C7E; }
+
+/* Panel WhatsApp muncul halus; tanpa animasi bila pengguna memilih gerak dikurangi */
+@media (prefers-reduced-motion: no-preference) {
+  .wa-panel:not([hidden]) { animation: panel-naik .18s cubic-bezier(.2, .7, .2, 1); }
+}
+@keyframes panel-naik { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
