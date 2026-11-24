@@ -321,22 +321,10 @@ figure { margin: 0; }
 .pita :focus-visible { outline-color: #fff; }
 
 /* ---------- Kontak ---------- */
-.kontak-in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
-.kontak-in h2 { font-size: clamp(28px, 3.2vw, 40px); }
-.kontak-sub { margin: 10px 0 26px; color: var(--tinta-2); }
-.kontak-data { display: grid; border-top: 1px solid var(--garis); }
-.kontak-data > div { padding: 16px 0; border-bottom: 1px solid var(--garis); }
-.kontak-data dt { color: var(--redup); font-size: 14px; }
-.kontak-data dd { margin: 2px 0 0; font-size: 17px; font-weight: 600; }
-.kontak-data a { text-underline-offset: 4px; }
-.minta { display: grid; gap: 14px; padding: 30px; border-radius: var(--sudut-besar); background: var(--putih); box-shadow: var(--bayang); }
-.minta h3 { font-size: 24px; }
-.minta-ket { margin: -6px 0 4px; color: var(--redup); font-size: 14px; }
-.minta label, .wa-form label { display: grid; gap: 6px; color: var(--tinta-2); font-size: 14px; font-weight: 600; }
-.minta input, .minta select, .minta textarea, .wa-form input, .wa-form select, .wa-form textarea { width: 100%; padding: 11px 12px; border: 1.5px solid #9AA6BE; border-radius: var(--sudut); background: var(--putih); color: var(--tinta); font: 400 16px/1.4 var(--huruf); }
-.minta textarea, .wa-form textarea { resize: vertical; }
-.minta :is(input, select, textarea):focus, .wa-form :is(input, select, textarea):focus { outline: none; border-color: var(--biru); box-shadow: 0 0 0 3px rgba(59, 130, 246, .3); }
-.minta .btn { width: 100%; margin-top: 4px; }
+.wa-form label { display: grid; gap: 6px; color: var(--tinta-2); font-size: 14px; font-weight: 600; }
+.wa-form input, .wa-form select, .wa-form textarea { width: 100%; padding: 11px 12px; border: 1.5px solid #9AA6BE; border-radius: var(--sudut); background: var(--putih); color: var(--tinta); font: 400 16px/1.4 var(--huruf); }
+.wa-form textarea { resize: vertical; }
+.wa-form :is(input, select, textarea):focus { outline: none; border-color: var(--biru); box-shadow: 0 0 0 3px rgba(59, 130, 246, .3); }
 
 /* ---------- Kaki ---------- */
 .foot { padding: 64px 0 0; border-top: 1px solid var(--garis); background: var(--putih); color: var(--tinta-2); font-size: 15px; }
@@ -389,7 +377,7 @@ figure { margin: 0; }
 
 /* ---------- Layar sedang ---------- */
 @media (max-width: 1040px) {
-  .pengantar-in, .layanan-in, .kontak-in { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .pengantar-in, .layanan-in { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .ilus { max-width: 560px; }
   .porto { grid-auto-columns: calc((100% - 20px) / 2); }
   .katalog { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -421,13 +409,12 @@ figure { margin: 0; }
   .geser-btn { display: none; }
   .katalog, .unggul-grid, .faq, .foot-grid { grid-template-columns: minmax(0, 1fr); }
   .pita-btn, .pita-btn .btn { width: 100%; }
-  .minta { padding: 24px 18px; }
   .wa-apung { right: 14px; bottom: 14px; }
   .wa-buka { min-height: 58px; padding: 0 15px; }
   .wa-buka span { display: none; }
-  .wa-apung.terbuka { left: 0; right: 0; bottom: 0; gap: 0; }
   .wa-apung.terbuka .wa-buka { display: none; }
-  .wa-panel { width: 100%; max-height: 88vh; border-radius: var(--sudut-besar) var(--sudut-besar) 0 0; }
+  /* HP: popup jadi lembar dari bawah, isian satu kolom */
+  .wa-panel { position: fixed; top: auto; bottom: 0; left: 0; width: 100%; max-height: 90vh; border-radius: var(--sudut-besar) var(--sudut-besar) 0 0; }
 }
 
 /* Footer: Data Perusahaan & Kontak */
@@ -442,3 +429,22 @@ figure { margin: 0; }
 .foot-kontak a:hover { color: var(--biru); }
 @media (max-width: 760px) { .foot-grid > :last-child { grid-column: auto; } }
 .foot-kontak p { margin: 0; }
+
+/* Popup WhatsApp: modal di tengah layar */
+.kunci-gulir { overflow: hidden; }
+.wa-latar { position: fixed; inset: 0; background: rgba(19, 42, 82, .55); }
+.wa-latar[hidden] { display: none; }
+@media (prefers-reduced-motion: no-preference) { .wa-latar:not([hidden]) { animation: latar-muncul .18s ease-out; } }
+@keyframes latar-muncul { from { opacity: 0; } }
+.wa-form textarea { min-height: 96px; }
+/* Tablet & desktop: di tengah, lebar; HP tetap lembar dari bawah (lihat @media 760px) */
+@media (min-width: 761px) {
+  .wa-panel { position: fixed; left: 50%; top: 50%; width: min(680px, calc(100vw - 48px)); max-height: calc(100vh - 48px); transform: translate(-50%, -50%); }
+  .wa-atas { padding: 18px 16px 18px 22px; }
+  .wa-atas h2 { font-size: 19px; }
+  .wa-form { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 18px; padding: 24px 22px 22px; }
+  .wa-form > :nth-child(n + 3) { grid-column: 1 / -1; }
+  .wa-form textarea { min-height: 110px; }
+}
+@media (min-width: 761px) and (prefers-reduced-motion: no-preference) { .wa-panel:not([hidden]) { animation-name: modal-muncul; } }
+@keyframes modal-muncul { from { opacity: 0; transform: translate(-50%, calc(-50% + 12px)) scale(.98); } }

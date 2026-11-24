@@ -59,7 +59,7 @@
   <div class="wrap bilah-in">
     <span>WhatsApp <a href="https://wa.me/6281271278201" target="_blank" rel="noopener">0812 7127 8201</a></span>
     <span class="bilah-email"><a href="mailto:mannastudiocode@gmail.com">mannastudiocode@gmail.com</a></span>
-    <a class="bilah-cta ajak-wa" href="#minta-penawaran">Konsultasi gratis</a>
+    <a class="bilah-cta ajak-wa" href="https://wa.me/6281271278201" target="_blank" rel="noopener">Konsultasi gratis</a>
   </div>
 </div>
 
@@ -74,7 +74,7 @@
       <a href="#pekerjaan">Pekerjaan</a>
       <a href="#katalog">e-Katalog</a>
       <a href="#tanya-jawab">Tanya jawab</a>
-      <a href="#minta-penawaran" class="btn btn-biru btn-kecil ajak-wa">Minta penawaran</a>
+      <a href="https://wa.me/6281271278201" target="_blank" rel="noopener" class="btn btn-biru btn-kecil ajak-wa">Minta penawaran</a>
     </nav>
   </div>
 </header>
@@ -87,7 +87,7 @@
       <p class="hero-sub">untuk instansi dan usaha di Bengkulu Selatan</p>
       <p class="lead">Kami membuat sistem informasi, aplikasi layanan publik, dan website, lalu melatih penggunanya dan merawatnya setelah dipakai.</p>
       <div class="cta">
-        <a class="btn btn-biru ajak-wa" href="#minta-penawaran">Konsultasi gratis</a>
+        <a class="btn btn-biru ajak-wa" href="https://wa.me/6281271278201" target="_blank" rel="noopener">Konsultasi gratis</a>
         <a class="btn btn-garis" href="#pekerjaan">Lihat pekerjaan kami</a>
       </div>
       <dl class="angka" id="angka" aria-label="Ringkasan pekerjaan"></dl>
@@ -198,7 +198,7 @@
         <p class="kecil">Layanan kami</p>
         <h2>Satu tim untuk aplikasi, website, dan perawatannya</h2>
         <p>Konsultasi pertama tidak dipungut biaya. Ceritakan kebutuhannya, kami bantu carikan bentuk yang paling pas.</p>
-        <a class="btn btn-biru ajak-wa" href="#minta-penawaran">Konsultasi sekarang</a>
+        <a class="btn btn-biru ajak-wa" href="https://wa.me/6281271278201" target="_blank" rel="noopener">Konsultasi sekarang</a>
       </div>
       <ul class="layanan-grid">
         <li><span class="ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><b>Sistem informasi</b><span>Pemantauan anggaran, kinerja, dan perencanaan OPD.</span></li>
@@ -232,7 +232,7 @@
           <h3>Butuh aplikasi dengan fitur khusus?</h3>
           <p>Ceritakan kebutuhannya, kami bantu susun penawaran yang sesuai.</p>
         </div>
-        <a class="btn btn-putih ajak-wa" href="#minta-penawaran">Konsultasi gratis</a>
+        <a class="btn btn-putih ajak-wa" href="https://wa.me/6281271278201" target="_blank" rel="noopener">Konsultasi gratis</a>
       </div>
     </div>
   </section>
@@ -317,30 +317,15 @@
       </div>
       <div class="pita-btn">
         <a class="btn btn-garis-putih" href="#pekerjaan">Lihat pekerjaan</a>
-        <a class="btn btn-biru ajak-wa" href="#minta-penawaran">Konsultasi gratis</a>
+        <a class="btn btn-biru ajak-wa" href="https://wa.me/6281271278201" target="_blank" rel="noopener">Konsultasi gratis</a>
       </div>
     </div>
   </section>
 
-  <!-- Kontak -->
-  <section id="kontak" class="sec sec-kabut">
-    <div class="wrap kontak-in">
-      <div>
-        <h2>Ceritakan kebutuhan Anda</h2>
-        <p class="kontak-sub">Konsultasi pertama tidak dipungut biaya.</p>
-        <dl class="kontak-data">
-          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/6281271278201" target="_blank" rel="noopener">0812 7127 8201</a></dd></div>
-          <div><dt>Telepon</dt><dd><a href="tel:+6281271278201">0812 7127 8201</a> / <a href="tel:+6285266556231">0852 6655 6231</a></dd></div>
-          <div><dt>Email</dt><dd><a href="mailto:mannastudiocode@gmail.com">mannastudiocode@gmail.com</a></dd></div>
-          <div><dt>Alamat</dt><dd>Jl. SMKN 1 Bengkulu Selatan, RT.10, Ibul, Kota Manna, Bengkulu Selatan</dd></div>
-        </dl>
-      </div>
-
-      <form class="minta" id="minta-penawaran" aria-labelledby="minta-judul">
-        <h3 id="minta-judul">Minta penawaran</h3>
-        <p class="minta-ket">Isian ini membuka WhatsApp dengan pesan yang sudah tersusun. Tidak ada data yang disimpan di website ini.</p>
+  <!-- Isian formulir penawaran (ditampilkan di popup WhatsApp) -->
+  <template id="isian-penawaran">
         <label>Nama<input name="nama" autocomplete="name" required></label>
-        <label>Instansi atau usaha<input name="instansi" autocomplete="organization" required placeholder="mis. Dinas Pendidikan Kab. Bengkulu Selatan"></label>
+        <label>Instansi atau usaha<input name="instansi" autocomplete="organization" required placeholder="mis. Dinas Pendidikan"></label>
         <label>Kebutuhan
           <select name="kebutuhan" required>
             <option value="">Pilih kebutuhan…</option>
@@ -355,10 +340,7 @@
           </select>
         </label>
         <label>Keterangan singkat<textarea name="keterangan" rows="3" placeholder="Apa yang ingin diselesaikan, dan kapan dibutuhkan…"></textarea></label>
-        <button class="btn btn-biru" type="submit">Kirim lewat WhatsApp</button>
-      </form>
-    </div>
-  </section>
+  </template>
 </main>
 
 <footer class="foot">
