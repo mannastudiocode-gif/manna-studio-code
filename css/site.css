@@ -429,3 +429,12 @@ figure { margin: 0; }
   .minta { padding: 24px 18px; }
   .proyek-domain { white-space: normal; overflow-wrap: anywhere; }
 }
+
+/* Sebelumnya / sekarang di daftar pekerjaan */
+.ubah { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 0 0 14px; border: 1px solid var(--garis); border-radius: var(--sudut); overflow: hidden; }
+.ubah > div { padding: 12px 14px; }
+.ubah > div + div { border-left: 1px solid var(--garis); background: var(--tag-bg); }
+.ubah dt { color: var(--redup); font-size: 13px; font-weight: 700; }
+.ubah > div + div dt { color: var(--laut-2); }
+.ubah dd { margin: 4px 0 0; font-size: 15px; color: var(--tinta); }
+@media (max-width: 760px) { .ubah { grid-template-columns: 1fr; } .ubah > div + div { border-left: 0; border-top: 1px solid var(--garis); } }

@@ -65,6 +65,7 @@ function tampilPekerjaan(list) {
       </div>
       <div class="proyek-isi">
         <p>${esc(p.ringkas)}</p>
+        ${p.sebelum ? `<dl class="ubah"><div><dt>Sebelumnya</dt><dd>${esc(p.sebelum)}</dd></div><div><dt>Sekarang</dt><dd>${esc(p.sesudah)}</dd></div></dl>` : ''}
         ${tagHtml(p)}
       </div>
       ${p.domain ? `<span class="proyek-domain" translate="no">${esc(p.domain)}</span>` : '<span></span>'}

@@ -50,7 +50,10 @@
         "src": "assets/galeri/klinikpbg-panel-petugas.jpg",
         "ket": "Panel petugas: rekap konsultasi dan pengaduan"
       }
-    ]
+    ],
+    "sebelum": "Warga perlu datang ke kantor untuk menanyakan persyaratan PBG, dan petugas menjawab pertanyaan yang sama berulang kali.",
+    "sesudah": "Persyaratan, ceklis berkas, dan chatbot bisa dibuka kapan saja. Konsultasi dan pengaduan, termasuk lewat WhatsApp, masuk ke satu panel petugas.",
+    "draf_studi_kasus": true
   },
   {
     "judul": "E-Aspirasi DPRD",
@@ -61,7 +64,10 @@
     "ringkas": "Saluran aspirasi masyarakat kepada anggota DPRD, lengkap dengan tindak lanjut dan rekap per daerah pemilihan.",
     "tag": [
       "Layanan Publik"
-    ]
+    ],
+    "sebelum": "Aspirasi masyarakat datang lewat berbagai saluran sehingga sulit dilacak tindak lanjutnya.",
+    "sesudah": "Aspirasi masuk lewat satu formulir, tindak lanjutnya tercatat, dan rekap per daerah pemilihan siap dipakai anggota dewan.",
+    "draf_studi_kasus": true
   },
   {
     "judul": "e-SAKIP",
@@ -73,7 +79,10 @@
     "tag": [
       "Kinerja",
       "Sistem Informasi"
-    ]
+    ],
+    "sebelum": "Dokumen kinerja setiap OPD dikumpulkan dalam berkas terpisah dan sulit dibandingkan dari tahun ke tahun.",
+    "sesudah": "IKU, pohon kinerja, Renja, dan perjanjian kinerja diisi setiap OPD di satu aplikasi; riwayat antartahun tersimpan dan bisa diunduh dalam PDF.",
+    "draf_studi_kasus": true
   },
   {
     "judul": "e-Monev",
@@ -84,7 +93,10 @@
     "tag": [
       "Perencanaan",
       "Sistem Informasi"
-    ]
+    ],
+    "sebelum": "Formulir Renja dari setiap OPD harus direkap secara manual sebelum diselaraskan dengan RPJMD.",
+    "sesudah": "Formulir perencanaan diisi langsung, dan rekap Renja terhadap RPJMD maupun SIPD tersusun otomatis per tahun anggaran.",
+    "draf_studi_kasus": true
   },
   {
     "judul": "SIMENTIK",
@@ -96,7 +108,10 @@
     "tag": [
       "Kinerja",
       "Pemantauan"
-    ]
+    ],
+    "sebelum": "Pemantauan dan evaluasi kinerja internal dicatat terpisah sehingga sulit dipantau sepanjang tahun.",
+    "sesudah": "Pemantauan dan evaluasi kinerja internal dicatat di satu aplikasi per tahun.",
+    "draf_studi_kasus": true
   },
   {
     "judul": "Website Bappeda",
@@ -106,7 +121,10 @@
     "ringkas": "Website resmi Bappeda untuk profil, berita, dan dokumen perencanaan yang dikelola sendiri oleh admin kantor.",
     "tag": [
       "Website"
-    ]
+    ],
+    "sebelum": "Pembaruan berita dan dokumen perencanaan bergantung pada pihak luar.",
+    "sesudah": "Admin kantor memperbarui profil, berita, dan dokumen perencanaan sendiri.",
+    "draf_studi_kasus": true
   },
   {
     "judul": "e-Agenda",
@@ -116,7 +134,10 @@
     "ringkas": "Agenda dan rencana kegiatan Pemerintah Daerah, termasuk pengiriman dan penerimaan undangan antarbagian.",
     "tag": [
       "Administrasi"
-    ]
+    ],
+    "sebelum": "Agenda kegiatan dan undangan Pemda disebarkan lewat surat dan pesan terpisah.",
+    "sesudah": "Agenda dan undangan antarbagian tercatat di satu tempat dan bisa dilihat bersama.",
+    "draf_studi_kasus": true
   },
   {
     "judul": "Pemeliharaan dan keamanan website",
