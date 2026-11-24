@@ -137,7 +137,7 @@
     $('#view').innerHTML = `
       <div class="head"><h1>Ringkasan</h1></div>
       <div class="tiles">
-        <div class="tile"><span>Total tagihan ${th}</span><b>${rp(sum(invTh))}</b><small>${invTh.length} invoice, termasuk PPN</small></div>
+        <div class="tile"><span>Total tagihan ${th}</span><b>${rp(sum(invTh))}</b><small>${invTh.length} invoice</small></div>
         <div class="tile"><span>Sudah dibayar ${th}</span><b>${rp(sum(lunas))}</b><small>${lunas.length} invoice lunas</small></div>
         <div class="tile"><span>Belum dibayar (semua)</span><b>${rp(sum(belumSemua))}</b><small>${belumSemua.length} invoice menunggu</small></div>
         <div class="tile"><span>Pelanggan</span><b>${cache.pelanggan.length}</b><small>${cache.dokumen.length} dokumen tersimpan</small></div>
@@ -267,7 +267,7 @@
 
   function formInvoice(inv) {
     const baru = !inv;
-    inv = inv ? JSON.parse(JSON.stringify(inv)) : { nomor: nomorBerikut(), tanggal: today(), ppn_persen: 11, status: 'belum', item: [{ uraian: '', qty: 1, satuan: 'Paket', harga: 0 }] };
+    inv = inv ? JSON.parse(JSON.stringify(inv)) : { nomor: nomorBerikut(), tanggal: today(), ppn_persen: 0, status: 'belum', item: [{ uraian: '', qty: 1, satuan: 'Paket', harga: 0 }] };
     const b = modal(baru ? 'Buat invoice' : 'Ubah invoice ' + inv.nomor, `
       <form class="form" id="f">
         <label>Nomor invoice *<input name="nomor" required value="${esc(inv.nomor)}"></label>
@@ -279,7 +279,7 @@
           <table class="tbl items"><thead><tr><th>Uraian</th><th style="width:70px">Jml</th><th style="width:100px">Satuan</th><th style="width:150px">Harga satuan (Rp)</th><th class="r" style="width:140px">Jumlah</th><th style="width:36px"></th></tr></thead><tbody id="items"></tbody></table>
           <button type="button" class="btn btn-ghost btn-sm" id="add-item">+ Tambah baris</button>
         </div>
-        <label>PPN (%)<input type="number" name="ppn_persen" min="0" step="0.01" value="${esc(inv.ppn_persen)}"></label>
+        <label>PPN (%)<input type="number" name="ppn_persen" min="0" step="0.01" value="${esc(inv.ppn_persen)}"><small>Isi 0 selama CV belum PKP</small></label>
         <label>Status<select name="status">${Object.entries(STATUS).map(([k, v]) => `<option value="${k}" ${k === inv.status ? 'selected' : ''}>${v}</option>`).join('')}</select></label>
         <label>Tanggal dibayar<input type="date" name="tanggal_bayar" value="${esc(inv.tanggal_bayar || '')}"></label>
         <div class="sum" id="sum"></div>
@@ -306,7 +306,7 @@
       const items = ambilItem();
       [...tbody.children].forEach((tr, i) => tr.querySelector('[data-j]').textContent = rp(items[i].qty * items[i].harga));
       const h = hitung({ item: items, ppn_persen: b.querySelector('[name=ppn_persen]').value });
-      b.querySelector('#sum').innerHTML = `<div><span>Harga dasar</span><b>${rp(h.dasar)}</b></div><div><span>PPN</span><b>${rp(h.ppn)}</b></div><div class="tot"><span>Total</span><b>${rp(h.total)}</b></div>`;
+      b.querySelector('#sum').innerHTML = (h.ppn ? `<div><span>Harga dasar</span><b>${rp(h.dasar)}</b></div><div><span>PPN</span><b>${rp(h.ppn)}</b></div>` : '') + `<div class="tot"><span>Total</span><b>${rp(h.total)}</b></div>`;
     };
     inv.item.forEach(baris);
     b.querySelector('#add-item').onclick = () => { baris({ uraian: '', qty: 1, satuan: '', harga: 0 }); ulang(); };
@@ -354,8 +354,8 @@
       <table class="inv-tbl"><thead><tr><th>No</th><th>Uraian</th><th>Jumlah</th><th>Harga Satuan</th><th>Total</th></tr></thead><tbody>
         ${(inv.item || []).map((it, n) => `<tr><td class="c">${n + 1}</td><td>${esc(it.uraian)}</td><td class="c">${esc(it.qty)} ${esc(it.satuan || '')}</td><td class="r">${rp(it.harga)}</td><td class="r">${rp(it.qty * it.harga)}</td></tr>`).join('')}
       </tbody><tfoot>
-        <tr><td colspan="4" class="r">Harga (sebelum PPN)</td><td class="r">${rp(h.dasar)}</td></tr>
-        <tr><td colspan="4" class="r">PPN ${esc(inv.ppn_persen)}%</td><td class="r">${rp(h.ppn)}</td></tr>
+        ${h.ppn ? `<tr><td colspan="4" class="r">Harga (sebelum PPN)</td><td class="r">${rp(h.dasar)}</td></tr>
+        <tr><td colspan="4" class="r">PPN ${esc(inv.ppn_persen)}%</td><td class="r">${rp(h.ppn)}</td></tr>` : ''}
         <tr class="grand"><td colspan="4" class="r">TOTAL</td><td class="r">${rp(h.total)}</td></tr>
       </tfoot></table>
       <p class="inv-terbilang"><i>Terbilang: ${terbilang(h.total)}</i></p>

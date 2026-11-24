@@ -39,7 +39,7 @@
       id: uuid(), nomor: 'msc-001', tanggal: new Date().toISOString().slice(0, 10), jatuh_tempo: null,
       pelanggan_id: p.id, perihal: 'Pembuatan Aplikasi E-Aspirasi DPRD',
       item: [{ uraian: 'Aplikasi E-Aspirasi DPRD (1 paket)', qty: 1, satuan: 'Paket', harga: 24000000 }],
-      ppn_persen: 11, status: 'belum', tanggal_bayar: null, catatan: 'Contoh invoice mode demo.', dibuat: new Date().toISOString()
+      ppn_persen: 0, status: 'belum', tanggal_bayar: null, catatan: 'Contoh invoice mode demo.', dibuat: new Date().toISOString()
     }]);
     lsSet('dokumen', []);
     localStorage.setItem(LS('seeded'), '1');

@@ -40,7 +40,7 @@ create table if not exists public.invoice (
   pelanggan_id  uuid references public.pelanggan(id) on delete restrict,
   perihal       text,
   item          jsonb not null default '[]',  -- [{uraian, qty, satuan, harga}]
-  ppn_persen    numeric not null default 11,
+  ppn_persen    numeric not null default 0,   -- CV belum PKP: tanpa PPN
   status        text not null default 'belum' check (status in ('belum','lunas','batal')),
   tanggal_bayar date,
   catatan       text,

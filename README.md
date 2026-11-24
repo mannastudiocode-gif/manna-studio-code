@@ -59,7 +59,7 @@ Setelah itu, dashboard akan meminta login, dan data tersimpan online sehingga bi
 
 ## Pemakaian sehari-hari
 
-- **Invoice**: nomor otomatis `msc-0xx` dan bisa diubah. Harga dasar dan PPN 11% ditulis terpisah, dilengkapi terbilang dan rekening.
+- **Invoice**: nomor otomatis `msc-0xx` dan bisa diubah. Tanpa PPN karena CV belum PKP (PPN otomatis 0%). Kalau kelak sudah PKP, isi kolom PPN 11 dan baris harga dasar serta PPN akan muncul. Dilengkapi terbilang dan rekening.
   Klik **Lihat / Cetak → Cetak / Simpan PDF**, lalu pilih printer atau *Save as PDF* (ukuran A4, margin *None*/*Default*).
 - **Invoice batal**: ubah statusnya menjadi *Batal*, jangan dihapus, supaya urutan nomor tetap tercatat.
 - **Dokumen**: PDF, gambar, dan video dibuka langsung di dalam halaman. File Word/Excel diunduh. Batas ukuran 50 MB per file.
