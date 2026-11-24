@@ -19,32 +19,6 @@ menuBtn.addEventListener('click', () => {
 });
 document.querySelectorAll('.links a').forEach(a => a.addEventListener('click', tutupMenu));
 
-/* ---------- Pita logo teknologi: tombol geser + geser otomatis pelan ---------- */
-(function () {
-  const daftar = $('.tek-daftar'), kiri = $('.tek-kiri'), kanan = $('.tek-kanan');
-  if (!daftar) return;
-  const perbarui = () => {
-    kiri.disabled = daftar.scrollLeft <= 4;
-    kanan.disabled = daftar.scrollLeft + daftar.clientWidth >= daftar.scrollWidth - 4;
-  };
-  const geser = arah => daftar.scrollBy({ left: arah * daftar.clientWidth * 0.6, behavior: 'smooth' });
-  kiri.addEventListener('click', () => { berhenti(); geser(-1); });
-  kanan.addEventListener('click', () => { berhenti(); geser(1); });
-  daftar.addEventListener('scroll', perbarui, { passive: true });
-  window.addEventListener('resize', perbarui);
-  perbarui();
-  // Geser otomatis tiap 3 detik, kembali ke awal di ujung; tidak jalan bila pengguna memilih gerak dikurangi
-  let jalan = null;
-  const berhenti = () => { clearInterval(jalan); jalan = null; };
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    jalan = setInterval(() => {
-      if (daftar.scrollLeft + daftar.clientWidth >= daftar.scrollWidth - 4) daftar.scrollTo({ left: 0, behavior: 'smooth' });
-      else geser(1);
-    }, 3000);
-    ['pointerdown', 'focusin', 'wheel'].forEach(ev => daftar.addEventListener(ev, berhenti, { passive: true }));
-  }
-})();
-
 /* ---------- Ilustrasi kartu pekerjaan (bukan tangkapan layar asli) ---------- */
 function ilustrasi(jenis) {
   const ulang = (n, f) => Array.from({ length: n }, (_, i) => f(i)).join('');
