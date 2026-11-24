@@ -60,7 +60,8 @@
     <nav class="links" aria-label="Utama">
       <a href="#layanan">Layanan</a>
       <a href="#pekerjaan">Pekerjaan</a>
-      <a href="#cara-kerja">Cara kerja</a>
+      <a href="#katalog">e-Katalog</a>
+      <a href="#tanya-jawab">Tanya jawab</a>
       <a href="#kontak">Kontak</a>
       <a href="admin/" class="nav-admin">Masuk dashboard</a>
     </nav>
@@ -68,15 +69,17 @@
 </header>
 
 <main id="isi">
+  <!-- Pembuka -->
   <section class="hero">
     <div class="wrap hero-in">
       <div class="hero-text">
         <h1>Sistem informasi dan aplikasi untuk perangkat daerah.</h1>
         <p class="lead">CV. Manna Studio Code membangun aplikasi pemantauan, layanan publik, dan website untuk instansi di Bengkulu Selatan. Kami bekerja dari Kota Manna, melatih operator Anda, dan tetap mendampingi setelah aplikasi dipakai.</p>
         <div class="cta">
-          <a class="btn btn-kunyit" href="https://wa.me/6285266556231?text=Halo%20Manna%20Studio%20Code%2C%20saya%20ingin%20konsultasi" target="_blank" rel="noopener">Konsultasi gratis via WhatsApp</a>
+          <a class="btn btn-kunyit" href="#minta-penawaran">Minta penawaran</a>
           <a class="btn btn-garis" href="#pekerjaan">Lihat pekerjaan kami</a>
         </div>
+        <dl class="angka" id="angka" aria-label="Ringkasan pekerjaan"></dl>
       </div>
 
       <figure class="layar">
@@ -100,13 +103,15 @@
     </div>
   </section>
 
+  <!-- Klien -->
   <section class="klien" aria-labelledby="klien-judul">
     <div class="wrap klien-in">
-      <h2 id="klien-judul">Sedang dipakai di</h2>
+      <h2 id="klien-judul">Dipakai oleh</h2>
       <ul id="klien-list"><li>Memuat…</li></ul>
     </div>
   </section>
 
+  <!-- Layanan -->
   <section id="layanan" class="sec">
     <div class="wrap dua">
       <div class="dua-kiri">
@@ -114,27 +119,44 @@
         <p>Semua dikerjakan dari Kota Manna, jadi kami bisa datang untuk rapat, pelatihan, dan perbaikan.</p>
       </div>
       <dl class="layanan">
-        <div><dt>Sistem informasi perangkat daerah</dt><dd>Pemantauan anggaran dan kegiatan, pelaporan, dan pengolahan data OPD, lengkap dengan unduhan Excel.</dd></div>
-        <div><dt>Aplikasi layanan publik</dt><dd>Pengaduan, aspirasi, konsultasi online, dan antrean layanan yang bisa tersambung ke WhatsApp.</dd></div>
+        <div><dt>Sistem informasi perangkat daerah</dt><dd>Pemantauan anggaran dan kinerja, perencanaan, pelaporan, dan pengolahan data OPD, lengkap dengan unduhan Excel dan PDF.</dd></div>
+        <div><dt>Aplikasi layanan publik</dt><dd>Pengaduan, aspirasi, konsultasi online, dan chatbot yang bisa tersambung ke WhatsApp.</dd></div>
         <div><dt>Website instansi dan usaha</dt><dd>Profil, berita, dan informasi layanan yang bisa diperbarui sendiri oleh admin kantor.</dd></div>
-        <div><dt>Ringkasan data untuk pimpinan</dt><dd>Angka-angka penting dalam satu layar, bisa dicetak untuk rapat.</dd></div>
-        <div><dt>Pemeliharaan dan server</dt><dd>Perbaikan, penambahan fitur, cadangan data rutin, dan pengelolaan hosting.</dd></div>
-        <div><dt>Pelatihan operator</dt><dd>Bimbingan teknis untuk operator dan admin, disertai buku panduan.</dd></div>
+        <div><dt>Pemeliharaan dan keamanan</dt><dd>Pembaruan keamanan rutin, pemindaian dan pembersihan malware, penanganan website yang diretas, dan penutupan celahnya.</dd></div>
+        <div><dt>Konsultasi masalah IT</dt><dd>Aplikasi lama tidak jalan, website lambat atau diretas, atau bingung memilih solusi? Kami bantu cari penyebab dan jalan keluarnya.</dd></div>
+        <div><dt>Replikasi aplikasi</dt><dd>Membangun ulang aplikasi lama dengan fungsi yang sama di teknologi baru, termasuk memindahkan datanya.</dd></div>
+        <div><dt>Server dan hosting</dt><dd>Sewa cloud server di pusat data Indonesia, cadangan harian, dan pengelolaannya.</dd></div>
+        <div><dt>Pelatihan, panduan, dan video tutorial</dt><dd>Bimbingan teknis untuk operator dan admin, disertai buku panduan dan video tutorial bersubtitle.</dd></div>
       </dl>
     </div>
   </section>
 
+  <!-- Pekerjaan -->
   <section id="pekerjaan" class="sec sec-kabut">
     <div class="wrap">
       <div class="sec-head">
         <h2>Pekerjaan kami</h2>
         <p>Aplikasi yang sudah kami serahkan dan sedang dipakai.</p>
       </div>
+      <div id="sorotan"></div>
       <div id="porto-list" class="porto"><p class="muted">Memuat…</p></div>
     </div>
   </section>
 
-  <section id="cara-kerja" class="sec">
+  <!-- e-Katalog -->
+  <section id="katalog" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Bisa dibeli lewat e-Katalog</h2>
+        <p>Produk berikut tayang di Katalog Elektronik INAPROC, sehingga instansi bisa membelinya langsung lewat e-purchasing.</p>
+      </div>
+      <div id="katalog-list" class="katalog"><p class="muted">Memuat…</p></div>
+      <p class="katalog-cari">Cari <strong>Manna Studio Code</strong> di <a href="https://katalog.inaproc.id/" target="_blank" rel="noopener">katalog.inaproc.id</a>, atau <a href="#minta-penawaran">minta penawaran</a> bila kebutuhan Anda belum ada di daftar ini.</p>
+    </div>
+  </section>
+
+  <!-- Cara kerja -->
+  <section id="cara-kerja" class="sec sec-kabut">
     <div class="wrap">
       <div class="sec-head">
         <h2>Cara kerja</h2>
@@ -150,18 +172,90 @@
     </div>
   </section>
 
+  <!-- Tanya jawab -->
+  <section id="tanya-jawab" class="sec">
+    <div class="wrap dua">
+      <div class="dua-kiri">
+        <h2>Tanya jawab pengadaan</h2>
+        <p>Pertanyaan yang paling sering diajukan pejabat pengadaan dan pengelola kegiatan.</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Bagaimana cara membeli lewat e-Katalog?</summary>
+          <p>Cari "Manna Studio Code" di Katalog Elektronik INAPROC, pilih produknya, lalu pesan lewat e-purchasing seperti produk katalog lainnya. Kalau kebutuhan Anda berbeda dari produk yang tayang, hubungi kami untuk penawaran tersendiri.</p>
+        </details>
+        <details>
+          <summary>Apakah kode sumber aplikasi diserahkan?</summary>
+          <p>Ya. Untuk aplikasi pengendalian pembangunan dan jasa replikasi aplikasi, kode sumber diserahkan kepada instansi. Untuk pekerjaan lain, ketentuannya dicantumkan dalam surat penawaran.</p>
+        </details>
+        <details>
+          <summary>Berapa lama garansinya?</summary>
+          <p>Aplikasi pengendalian pembangunan bergaransi 6 bulan, dan jasa replikasi aplikasi bergaransi perbaikan 12 bulan. Masa garansi pekerjaan lain dicantumkan dalam surat penawaran.</p>
+        </details>
+        <details>
+          <summary>Bagaimana tagihan dan pembayarannya?</summary>
+          <p>Invoice dibuat atas nama CV. Manna Studio Code dengan rincian harga dan pajak sesuai ketentuan. Pembayaran ditransfer ke rekening Bank Bengkulu atas nama CV. Manna Studio Code yang tercantum di invoice. Kami tidak pernah meminta pembayaran ke rekening pribadi.</p>
+        </details>
+        <details>
+          <summary>Berapa lama pengerjaannya?</summary>
+          <p>Tergantung lingkup pekerjaan. Jadwal rinci dicantumkan dalam surat penawaran, dan aplikasi dibuat bertahap sehingga bisa dicoba sejak awal.</p>
+        </details>
+        <details>
+          <summary>Apakah operator kami dilatih?</summary>
+          <p>Ya. Setiap serah terima disertai pelatihan operator dan buku panduan. Untuk SIPANDAI dan Klinik PBG kami juga membuat video tutorial.</p>
+        </details>
+        <details>
+          <summary>Website kami diretas atau aplikasi lama bermasalah. Bisa dibantu?</summary>
+          <p>Bisa. Kami menangani pembersihan malware, penutupan celah keamanan, dan pemulihan website yang diretas, serta pemeliharaan rutin sesudahnya. Untuk kejadian mendesak, hubungi kami lewat WhatsApp.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tentang kami -->
+  <section id="tentang" class="sec sec-kabut">
+    <div class="wrap dua">
+      <div class="dua-kiri">
+        <h2>Tentang kami</h2>
+      </div>
+      <div class="tentang" id="tentang-isi"><p class="muted">Memuat…</p></div>
+    </div>
+  </section>
+
+  <!-- Kontak dan permintaan penawaran -->
   <section id="kontak" class="kontak">
     <div class="wrap kontak-in">
       <div>
         <h2>Ceritakan kebutuhan kantor Anda.</h2>
         <p>Konsultasi pertama tidak dipungut biaya.</p>
-        <a class="btn btn-kunyit" href="https://wa.me/6285266556231" target="_blank" rel="noopener">Chat di WhatsApp</a>
+        <dl class="kontak-data">
+          <div><dt>WhatsApp / telepon</dt><dd><a href="https://wa.me/6285266556231" target="_blank" rel="noopener">0852 6655 6231</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:mannastudiocode@gmail.com">mannastudiocode@gmail.com</a></dd></div>
+          <div><dt>Alamat</dt><dd>Jl. SMKN 1 Bengkulu Selatan, RT.10, Ibul, Kota Manna, Bengkulu Selatan</dd></div>
+        </dl>
       </div>
-      <dl class="kontak-data">
-        <div><dt>WhatsApp / telepon</dt><dd><a href="https://wa.me/6285266556231" target="_blank" rel="noopener">0852 6655 6231</a></dd></div>
-        <div><dt>Email</dt><dd><a href="mailto:mannastudiocode@gmail.com">mannastudiocode@gmail.com</a></dd></div>
-        <div><dt>Alamat</dt><dd>Jl. SMKN 1 Bengkulu Selatan, RT.10, Ibul, Kota Manna, Bengkulu Selatan</dd></div>
-      </dl>
+
+      <form class="minta" id="minta-penawaran" aria-labelledby="minta-judul">
+        <h3 id="minta-judul">Minta penawaran</h3>
+        <p class="minta-ket">Isian ini membuka WhatsApp dengan pesan yang sudah tersusun. Tidak ada data yang disimpan di website ini.</p>
+        <label>Nama<input name="nama" autocomplete="name" required></label>
+        <label>Instansi atau usaha<input name="instansi" autocomplete="organization" required placeholder="mis. Dinas Pendidikan Kab. Bengkulu Selatan"></label>
+        <label>Kebutuhan
+          <select name="kebutuhan" required>
+            <option value="">Pilih kebutuhan…</option>
+            <option>Aplikasi atau sistem informasi baru</option>
+            <option>Website instansi atau usaha</option>
+            <option>Pemeliharaan dan keamanan</option>
+            <option>Konsultasi masalah IT</option>
+            <option>Replikasi aplikasi lama</option>
+            <option>Server dan hosting</option>
+            <option>Pembelian lewat e-Katalog</option>
+            <option>Lainnya</option>
+          </select>
+        </label>
+        <label>Keterangan singkat<textarea name="keterangan" rows="3" placeholder="Apa yang ingin diselesaikan, dan kapan dibutuhkan…"></textarea></label>
+        <button class="btn btn-kunyit" type="submit">Kirim lewat WhatsApp</button>
+      </form>
     </div>
   </section>
 </main>
@@ -172,6 +266,11 @@
     <a href="admin/">Masuk dashboard</a>
   </div>
 </footer>
+
+<div class="lihat" id="lihat" hidden role="dialog" aria-modal="true" aria-label="Tampilan aplikasi">
+  <button class="lihat-x" type="button" aria-label="Tutup">×</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+</div>
 
 <script src="js/site.js"></script>
 </body>

@@ -1,0 +1,32 @@
+[
+  {
+    "jenis": "Aplikasi",
+    "nama": "Aplikasi Pengendalian Pembangunan Daerah",
+    "fitur": ["Impor DPA langsung dari SIPD", "Realisasi keuangan dan fisik bulanan", "Kurva S dan tanda deviasi per OPD", "Garansi 6 bulan, kode diserahkan"]
+  },
+  {
+    "jenis": "Jasa",
+    "nama": "Replikasi Aplikasi Web dan Android",
+    "fitur": ["Fungsi setara aplikasi lama", "Pemindahan data dan pelatihan", "Garansi perbaikan 12 bulan", "Kode sumber diserahkan"]
+  },
+  {
+    "jenis": "Jasa",
+    "nama": "Pemeliharaan Aplikasi Berbasis Web",
+    "fitur": ["WordPress, CodeIgniter, Yii2", "Pembaruan keamanan bulanan", "Pemindaian malware berkas dan database", "Tanggap insiden paling lambat 24 jam"]
+  },
+  {
+    "jenis": "Sewa",
+    "nama": "Cloud Server VPS 4 vCPU, 8 GB RAM",
+    "fitur": ["80 GB SSD NVMe, 1 IPv4", "Pusat data di Indonesia", "Cadangan harian dan snapshot", "SLA 99,9%"]
+  },
+  {
+    "jenis": "Lisensi",
+    "nama": "Claude Pro untuk Instansi Pemerintah",
+    "fitur": ["1 akun pengguna instansi", "Masa lisensi 1 atau 12 bulan", "Analisis dokumen, data, dan kode", "Faktur atas nama instansi"]
+  },
+  {
+    "jenis": "Lisensi 1 tahun",
+    "nama": "Paket Keamanan dan Produktivitas Website",
+    "fitur": ["SSL Wildcard dan Wordfence", "AIOS dan WP Activity Log", "Elementor Pro dan Zoom Pro", "Instalasi, pengaturan, dan pemeliharaan"]
+  }
+]

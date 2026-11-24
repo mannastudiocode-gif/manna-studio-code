@@ -275,3 +275,157 @@ figure { margin: 0; }
   .kontak-in { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .kontak .btn { width: 100%; }
 }
+
+/* ==========================================================================
+   Bagian tambahan: angka, studi kasus, galeri, e-Katalog, tanya jawab,
+   tentang kami, formulir penawaran, pembesar gambar
+   ========================================================================== */
+
+/* ---------- Angka ringkas di pembuka ---------- */
+.angka { display: flex; flex-wrap: wrap; gap: 14px 40px; margin: 40px 0 0; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .18); }
+.angka:empty { display: none; }
+.angka div { display: flex; flex-direction: column-reverse; }
+.angka dt { color: var(--muda-di-laut); font-size: 14px; }
+.angka dd { margin: 0; color: var(--kunyit); font-size: 38px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+
+/* ---------- Studi kasus ---------- */
+.kasus {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 40px;
+  border-radius: var(--sudut-besar);
+  background: var(--laut); color: var(--putih);
+}
+.kasus-klien { margin: 0 0 6px; color: var(--muda-di-laut); font-size: 15px; }
+.kasus h3 { font-size: clamp(28px, 3vw, 38px); }
+.kasus h3 span { display: block; margin-top: 6px; color: var(--muda-di-laut); font-size: 16px; font-weight: 500; letter-spacing: 0; }
+.kasus dl { margin: 26px 0 0; }
+.kasus dt { margin-top: 18px; color: var(--kunyit); font-size: 14px; font-weight: 700; }
+.kasus dd { margin: 4px 0 0; color: #E6EFEE; }
+.kasus dd ul { display: grid; gap: 4px; padding-left: 18px; }
+.kasus-hasil { font-size: 18px; font-weight: 600; color: var(--putih) !important; }
+.kasus-gambar .shot { border-color: rgba(255, 255, 255, .25); }
+
+/* ---------- Tangkapan layar ---------- */
+.shot {
+  display: block; width: 100%; padding: 0;
+  overflow: hidden; cursor: zoom-in;
+  border: 1px solid var(--garis); border-radius: var(--sudut);
+  background: var(--putih);
+  transition: border-color .15s, transform .15s;
+}
+.shot:hover { border-color: var(--laut-2); }
+.shot img { display: block; width: 100%; height: auto; }
+.shot-besar { box-shadow: 0 24px 60px -24px rgba(0, 0, 0, .6); }
+
+.galeri { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 6px; }
+
+/* ---------- Daftar pekerjaan ---------- */
+.proyek-panjang { margin: 4px 0 0 !important; color: var(--tinta) !important; font-size: 14px !important; }
+.proyek-domain { color: var(--redup); font-size: 14px; white-space: nowrap; }
+
+/* ---------- e-Katalog ---------- */
+.katalog { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2px solid var(--laut); }
+.produk { padding: 26px 26px 28px 0; border-bottom: 1px solid var(--garis); }
+.produk:not(:nth-child(3n + 1)) { padding-left: 26px; border-left: 1px solid var(--garis); }
+.produk-jenis { display: inline-block; margin: 0 0 10px; padding: 2px 10px; border-radius: 99px; background: #FBF0D8; color: #7A5200; font-size: 13px; font-weight: 600; }
+.produk h3 { font-size: 19px; letter-spacing: -0.01em; }
+.produk ul { display: grid; gap: 6px; margin-top: 14px; list-style: none; }
+.produk li { position: relative; padding-left: 18px; color: var(--tinta-2); font-size: 15.5px; }
+.produk li::before { content: ''; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 2px; background: var(--laut-2); }
+.katalog-cari { margin: 28px 0 0; color: var(--tinta-2); }
+
+/* ---------- Tanya jawab ---------- */
+.faq { border-top: 1px solid var(--garis); }
+.faq details { border-bottom: 1px solid var(--garis); }
+.faq summary {
+  position: relative; display: block;
+  padding: 20px 44px 20px 0;
+  font-size: 18px; font-weight: 600; cursor: pointer; list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: '+'; position: absolute; right: 6px; top: 50%;
+  display: grid; place-items: center; width: 28px; height: 28px; margin-top: -14px;
+  border-radius: 50%; background: var(--kabut); color: var(--laut); font-size: 20px; font-weight: 500;
+}
+.faq details[open] summary::after { content: '−'; background: var(--kunyit); color: var(--tinta); }
+.faq summary:hover { color: var(--laut-2); }
+.faq details p { max-width: 40em; margin: 0 0 22px; color: var(--tinta-2); }
+
+/* ---------- Tentang kami ---------- */
+.tentang > p { max-width: 40em; margin: 0 0 16px; font-size: 18px; }
+.legal { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; margin-top: 30px; border-top: 1px solid var(--garis); }
+.legal > div { padding: 14px 0; border-bottom: 1px solid var(--garis); }
+.legal dt { color: var(--redup); font-size: 14px; }
+.legal dd { margin: 2px 0 0; font-weight: 600; overflow-wrap: anywhere; }
+.kbli-judul { margin: 36px 0 12px; font-size: 18px; }
+.kbli { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; list-style: none; }
+.kbli li { display: flex; gap: 12px; color: var(--tinta-2); font-size: 15.5px; }
+.kbli b { flex-shrink: 0; min-width: 52px; color: var(--laut-2); }
+
+/* ---------- Kontak & formulir penawaran ---------- */
+.kontak-in { align-items: start; }
+.kontak-in > div > p { margin: 16px 0 28px; }
+.minta {
+  display: grid; gap: 14px;
+  padding: 30px;
+  border-radius: var(--sudut-besar);
+  background: var(--putih); color: var(--tinta);
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .55);
+}
+.minta h3 { font-size: 24px; }
+.minta-ket { margin: -6px 0 4px !important; color: var(--redup) !important; font-size: 14px; }
+.minta label { display: grid; gap: 6px; color: var(--tinta-2); font-size: 14px; font-weight: 600; }
+.minta input, .minta select, .minta textarea {
+  width: 100%; padding: 11px 12px;
+  border: 1.5px solid #7F918F; border-radius: var(--sudut);
+  background: var(--putih); color: var(--tinta);
+  font: 400 16px/1.4 var(--huruf);
+}
+.minta textarea { resize: vertical; }
+.minta input:focus, .minta select:focus, .minta textarea:focus { outline: none; border-color: var(--laut-2); box-shadow: 0 0 0 3px rgba(227, 167, 47, .45); }
+.minta .btn { width: 100%; margin-top: 4px; }
+.minta :focus-visible { outline-color: var(--laut-2); }
+
+/* ---------- Pembesar gambar ---------- */
+.lihat {
+  position: fixed; inset: 0; z-index: 60;
+  display: grid; place-items: center;
+  padding: 56px 20px 20px;
+  background: rgba(10, 30, 31, .88);
+  overscroll-behavior: contain;
+}
+.lihat[hidden] { display: none; }
+.lihat figure { max-width: 1200px; }
+.lihat img { max-height: calc(100vh - 120px); width: auto; border-radius: var(--sudut); }
+.lihat figcaption { margin-top: 12px; color: var(--putih); text-align: center; }
+.lihat-x {
+  position: absolute; top: 12px; right: 16px;
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, .12); color: var(--putih);
+  font-size: 28px; line-height: 1; cursor: pointer;
+}
+.lihat-x:hover { background: rgba(255, 255, 255, .22); }
+
+/* ---------- Penyesuaian layar ---------- */
+@media (max-width: 1040px) {
+  .kasus { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 32px; }
+  .katalog { grid-template-columns: 1fr 1fr; }
+  .produk, .produk:not(:nth-child(3n + 1)) { padding: 24px 24px 26px 0; border-left: 0; }
+  .produk:nth-child(2n) { padding-left: 24px; border-left: 1px solid var(--garis); }
+}
+@media (max-width: 760px) {
+  .angka { gap: 12px 28px; }
+  .angka dd { font-size: 30px; }
+  .kasus { padding: 24px 20px; }
+  .galeri { grid-template-columns: minmax(0, 1fr); }
+  .katalog { grid-template-columns: minmax(0, 1fr); }
+  .produk, .produk:nth-child(2n) { padding: 22px 0; border-left: 0; }
+  .legal, .kbli { grid-template-columns: minmax(0, 1fr); }
+  .minta { padding: 24px 18px; }
+  .proyek-domain { white-space: normal; overflow-wrap: anywhere; }
+}

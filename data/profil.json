@@ -1,0 +1,62 @@
+{
+  "nama": "CV. Manna Studio Code",
+  "direktur": "Evan Marheky",
+  "alamat": "Jl. SMKN 1 Bengkulu Selatan, RT.10, Ibul, Kota Manna, Bengkulu Selatan",
+  "tentang": [
+    "CV. Manna Studio Code adalah penyedia jasa aplikasi dan website yang berdiri sejak 2021 dan berkantor di Kota Manna, Bengkulu Selatan. Sebagian besar pekerjaan kami dibuat untuk perangkat daerah: sistem informasi, aplikasi layanan publik, website instansi, serta pemeliharaan dan keamanannya.",
+    "Karena berada di kabupaten yang sama, kami bisa hadir langsung untuk rapat, pelatihan operator, dan perbaikan. Setiap aplikasi diserahkan bersama buku panduan, dan bila diperlukan, video tutorial."
+  ],
+  "legalitas": [
+    {
+      "label": "Bentuk usaha",
+      "isi": "Persekutuan Komanditer (CV), usaha mikro (UMK)"
+    },
+    {
+      "label": "NIB",
+      "isi": "1265000501985 (OSS)"
+    },
+    {
+      "label": "NPWP",
+      "isi": "0423418961311000, status KSWP valid"
+    },
+    {
+      "label": "Akta pendirian",
+      "isi": "Nomor 01, 3 Mei 2021, Notaris Manalimarjan, S.H."
+    },
+    {
+      "label": "Pengesahan Kemenkumham",
+      "isi": "AHU-0034334-AH.01.14 Tahun 2021"
+    },
+    {
+      "label": "Penyedia Katalog Elektronik",
+      "isi": "Terdaftar di INAPROC"
+    }
+  ],
+  "_catatan": "Hanya isi 'legalitas' dan 'kbli' yang tampil di website. Nomor rekening sengaja tidak ditampilkan.",
+  "kbli": [
+    {
+      "kode": "62012",
+      "nama": "Pengembangan aplikasi perdagangan melalui internet (e-commerce)"
+    },
+    {
+      "kode": "62019",
+      "nama": "Pemrograman komputer lainnya"
+    },
+    {
+      "kode": "62029",
+      "nama": "Konsultasi komputer dan manajemen fasilitas komputer lainnya"
+    },
+    {
+      "kode": "63111",
+      "nama": "Pengolahan data"
+    },
+    {
+      "kode": "63122",
+      "nama": "Portal web dan/atau platform digital dengan tujuan komersial"
+    },
+    {
+      "kode": "47411",
+      "nama": "Perdagangan eceran komputer dan perlengkapannya"
+    }
+  ]
+}

@@ -1,23 +1,131 @@
 [
   {
-    "judul": "E-Aspirasi DPRD",
-    "klien": "Sekretariat DPRD Kabupaten Bengkulu Selatan",
-    "tahun": 2026,
-    "ringkas": "Aplikasi penyaluran aspirasi masyarakat kepada anggota DPRD, lengkap dengan tindak lanjut dan rekap per daerah pemilihan.",
-    "tag": ["Pelayanan Publik", "Web"]
-  },
-  {
     "judul": "SIPANDAI",
-    "klien": "Bagian Administrasi Pembangunan Setda",
+    "nama_panjang": "Sistem Informasi Pengendalian Pembangunan Terintegrasi",
+    "instansi": "Setda Bengkulu Selatan",
+    "klien": "Bagian Administrasi Pembangunan, Sekretariat Daerah",
     "tahun": 2026,
-    "ringkas": "Sistem Informasi Pengendalian Pembangunan Terintegrasi: target dan realisasi anggaran serta fisik, kurva S, rekapitulasi, dan unduhan Excel.",
-    "tag": ["Sistem Informasi", "Dashboard"]
+    "domain": "sipandai.bengkuluselatankab.go.id",
+    "ringkas": "Memantau target dan realisasi anggaran serta fisik setiap Perangkat Daerah tiap bulan. DPA diimpor dari SIPD, kurva S dan tanda deviasi per OPD, empat rekapitulasi, dan unduhan Excel. Diserahkan bersama buku manual dan video tutorial.",
+    "tag": [
+      "Sistem Informasi",
+      "Pemantauan"
+    ],
+    "masalah": "Setiap Perangkat Daerah mengirim laporan realisasi dalam berkas Excel yang bentuknya berbeda-beda, lalu digabung manual. Prosesnya lama, rawan selisih angka, dan pimpinan terlambat mengetahui kegiatan yang tertinggal dari jadwal.",
+    "solusi": [
+      "DPA diimpor langsung dari SIPD, jadi tidak diketik ulang",
+      "Setiap OPD mengisi realisasi keuangan dan fisik bulanan di satu tempat",
+      "Kurva S dan tanda deviasi menunjukkan kegiatan yang tertinggal",
+      "Rekap dan peringkat siap diunduh ke Excel untuk rapat pimpinan"
+    ],
+    "hasil": "Dipakai 41 Perangkat Daerah dan 211 unit SKPD untuk memantau pagu APBD 2026 sekitar Rp603,9 miliar.",
+    "gambar": [
+      {
+        "src": "assets/galeri/sipandai-beranda.jpg",
+        "ket": "Halaman depan SIPANDAI (sipandai.bengkuluselatankab.go.id)"
+      }
+    ]
   },
   {
     "judul": "Website Klinik PBG",
-    "klien": "Kabupaten Bengkulu Selatan",
+    "instansi": "Dinas PUPR",
+    "klien": "Dinas PUPR Kabupaten Bengkulu Selatan",
     "tahun": 2026,
-    "ringkas": "Informasi persyaratan PBG, ceklis berkas, konsultasi online, pengaduan masyarakat, dan panel petugas.",
-    "tag": ["Website", "Pelayanan Publik"]
+    "domain": "klinikpbg.bengkuluselatankab.go.id",
+    "ringkas": "Layanan Persetujuan Bangunan Gedung: persyaratan dan ceklis berkas, konsultasi online, pengaduan masyarakat, chatbot, layanan lewat WhatsApp, dan panel petugas. Dilengkapi panduan serta video tutorial untuk masyarakat dan operator.",
+    "tag": [
+      "Layanan Publik",
+      "WhatsApp"
+    ],
+    "gambar": [
+      {
+        "src": "assets/galeri/klinikpbg-persyaratan.jpg",
+        "ket": "Ceklis persyaratan berkas PBG untuk warga"
+      },
+      {
+        "src": "assets/galeri/klinikpbg-chatbot.jpg",
+        "ket": "Chatbot yang menjawab pertanyaan umum 24 jam"
+      },
+      {
+        "src": "assets/galeri/klinikpbg-panel-petugas.jpg",
+        "ket": "Panel petugas: rekap konsultasi dan pengaduan"
+      }
+    ]
+  },
+  {
+    "judul": "E-Aspirasi DPRD",
+    "instansi": "Sekretariat DPRD",
+    "klien": "Sekretariat DPRD Kabupaten Bengkulu Selatan",
+    "tahun": 2026,
+    "domain": "e-aspirasi.bengkuluselatankab.go.id",
+    "ringkas": "Saluran aspirasi masyarakat kepada anggota DPRD, lengkap dengan tindak lanjut dan rekap per daerah pemilihan.",
+    "tag": [
+      "Layanan Publik"
+    ]
+  },
+  {
+    "judul": "e-SAKIP",
+    "nama_panjang": "Sistem Akuntabilitas Kinerja Instansi Pemerintah",
+    "instansi": "Bappeda",
+    "klien": "Bappeda Kabupaten Bengkulu Selatan",
+    "domain": "e-sakip.bengkuluselatankab.go.id",
+    "ringkas": "Indikator kinerja utama, pohon kinerja, Renja, dan perjanjian kinerja dalam satu aplikasi. Setiap OPD masuk dengan akunnya sendiri untuk mengisi target dan realisasi; riwayat antartahun tersimpan dan hasilnya bisa diunduh dalam PDF.",
+    "tag": [
+      "Kinerja",
+      "Sistem Informasi"
+    ]
+  },
+  {
+    "judul": "e-Monev",
+    "instansi": "Bappeda",
+    "klien": "Bappeda Kabupaten Bengkulu Selatan",
+    "domain": "e-monev.bengkuluselatankab.go.id",
+    "ringkas": "Perencanaan dan rekapitulasi Renja per tahun anggaran: formulir perencanaan beserta perubahannya, rekap Renja terhadap RPJMD, dan rekap Renja SIPD.",
+    "tag": [
+      "Perencanaan",
+      "Sistem Informasi"
+    ]
+  },
+  {
+    "judul": "SIMENTIK",
+    "nama_panjang": "Sistem Monitoring Evaluasi Internal Kinerja",
+    "instansi": "Bappeda",
+    "klien": "Bappeda Kabupaten Bengkulu Selatan",
+    "domain": "simentiks.bengkuluselatankab.go.id",
+    "ringkas": "Pemantauan dan evaluasi kinerja internal per tahun.",
+    "tag": [
+      "Kinerja",
+      "Pemantauan"
+    ]
+  },
+  {
+    "judul": "Website Bappeda",
+    "instansi": "Bappeda",
+    "klien": "Bappeda Kabupaten Bengkulu Selatan",
+    "domain": "bappeda.bengkuluselatankab.go.id",
+    "ringkas": "Website resmi Bappeda untuk profil, berita, dan dokumen perencanaan yang dikelola sendiri oleh admin kantor.",
+    "tag": [
+      "Website"
+    ]
+  },
+  {
+    "judul": "e-Agenda",
+    "instansi": "Setda Bengkulu Selatan",
+    "klien": "Bagian Umum, Sekretariat Daerah",
+    "domain": "e-agenda.bengkuluselatankab.go.id",
+    "ringkas": "Agenda dan rencana kegiatan Pemerintah Daerah, termasuk pengiriman dan penerimaan undangan antarbagian.",
+    "tag": [
+      "Administrasi"
+    ]
+  },
+  {
+    "judul": "Pemeliharaan dan keamanan website",
+    "instansi": "Diskominfo",
+    "klien": "Diskominfo Kabupaten Bengkulu Selatan",
+    "ringkas": "Pemeliharaan rutin website dan aplikasi Pemda: pembersihan malware, penanganan peretasan, penutupan celah keamanan, dan pembaruan berkala.",
+    "tag": [
+      "Pemeliharaan",
+      "Keamanan"
+    ]
   }
 ]
