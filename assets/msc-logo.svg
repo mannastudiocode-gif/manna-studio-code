@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 230" width="680" height="230" role="img" aria-label="Logo CV. Manna Studio Code">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&amp;family=Plus+Jakarta+Sans:wght@800&amp;display=swap');</style>
+  </defs>
+  <!-- Emblem hijau -->
+  <rect x="0" y="15" width="200" height="200" fill="#00963F"/>
+  <rect x="14" y="29" width="8" height="172" rx="4" fill="#FFFFFF"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round">
+    <circle cx="112" cy="88" r="56"/>
+    <ellipse cx="112" cy="88" rx="26" ry="56"/>
+    <line x1="112" y1="32" x2="112" y2="144"/>
+    <line x1="56" y1="88" x2="168" y2="88"/>
+    <path d="M66 60 Q112 52 158 60"/>
+    <path d="M66 116 Q112 124 158 116"/>
+  </g>
+  <g font-family="'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="15" letter-spacing="1.5" fill="#FFFFFF">
+    <text x="34" y="170">MANNA</text>
+    <text x="34" y="186">STUDIO</text>
+    <text x="34" y="202">CODE</text>
+  </g>
+  <!-- Huruf M -->
+  <path d="M214 215 L214 15 L258 15 L297 133 L336 15 L380 15 L380 215 L344 215 L344 85 L314 175 L280 175 L250 85 L250 215 Z" fill="#1414E6"/>
+  <path d="M238 15 L258 15 L297 133 L287 163 Z" fill="#D9002B"/>
+  <!-- Huruf S dan C dengan garis tepi putih -->
+  <g font-family="'Playfair Display', Didot, 'Bodoni MT', Georgia, serif" font-weight="900" font-size="262" fill="#1414E6" stroke="#FFFFFF" stroke-width="8" paint-order="stroke" stroke-linejoin="round">
+    <text x="380" y="206">S</text>
+    <text x="494" y="206">C</text>
+  </g>
+</svg>

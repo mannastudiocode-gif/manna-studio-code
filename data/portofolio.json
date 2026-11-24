@@ -1,0 +1,23 @@
+[
+  {
+    "judul": "E-Aspirasi DPRD",
+    "klien": "Sekretariat DPRD Kabupaten Bengkulu Selatan",
+    "tahun": 2026,
+    "ringkas": "Aplikasi penyaluran aspirasi masyarakat kepada anggota DPRD, lengkap dengan tindak lanjut dan rekap per daerah pemilihan.",
+    "tag": ["Pelayanan Publik", "Web"]
+  },
+  {
+    "judul": "SIPANDAI",
+    "klien": "Bagian Administrasi Pembangunan Setda",
+    "tahun": 2026,
+    "ringkas": "Sistem Informasi Pengendalian Pembangunan Terintegrasi: target dan realisasi anggaran serta fisik, kurva S, rekapitulasi, dan unduhan Excel.",
+    "tag": ["Sistem Informasi", "Dashboard"]
+  },
+  {
+    "judul": "Website Klinik PBG",
+    "klien": "Kabupaten Bengkulu Selatan",
+    "tahun": 2026,
+    "ringkas": "Informasi persyaratan PBG, ceklis berkas, konsultasi online, pengaduan masyarakat, dan panel petugas.",
+    "tag": ["Website", "Pelayanan Publik"]
+  }
+]
