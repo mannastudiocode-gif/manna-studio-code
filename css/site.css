@@ -93,11 +93,6 @@ figure { margin: 0; }
   color: var(--muda-di-laut); font-size: 15px; font-weight: 500; text-decoration: none;
 }
 .links a:hover { color: var(--putih); }
-.links .nav-admin {
-  min-height: 40px; padding: 0 16px;
-  border: 1.5px solid rgba(255, 255, 255, .35); border-radius: var(--sudut); color: var(--putih);
-}
-.links .nav-admin:hover { border-color: var(--putih); }
 
 .menu-btn {
   display: none; min-height: 44px; padding: 0 16px;
