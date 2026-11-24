@@ -6,7 +6,7 @@
   <title>Jasa Aplikasi &amp; Website Bengkulu Selatan | Manna Studio Code</title>
   <meta name="description" content="Jasa pembuatan aplikasi, sistem informasi, dan website untuk perangkat daerah dan usaha di Bengkulu Selatan. Tim lokal Kota Manna, konsultasi gratis.">
   <link rel="canonical" href="https://mannastudiocode-gif.github.io/manna-studio-code/">
-  <meta name="theme-color" content="#FFFFFF">
+  <meta name="theme-color" content="#0F3D3E">
   <link rel="icon" href="assets/msc-logo-400.png">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="id_ID">
@@ -45,7 +45,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -53,7 +53,9 @@
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a href="#" class="brand" aria-label="Manna Studio Code, ke atas"><img src="assets/msc-logo-400.png" alt="Manna Studio Code" width="400" height="120" fetchpriority="high"></a>
+    <a href="#" class="brand" aria-label="Manna Studio Code, ke atas">
+      <img src="assets/msc-logo-400.png" alt="" width="400" height="120" fetchpriority="high">
+    </a>
     <button class="menu-btn" aria-label="Buka menu" aria-expanded="false">Menu</button>
     <nav class="links" aria-label="Utama">
       <a href="#layanan">Layanan</a>
@@ -68,25 +70,47 @@
 <main id="isi">
   <section class="hero">
     <div class="wrap hero-in">
-      <h1><span>Aplikasi untuk</span> <span>kantor‑kantor di</span> <span>Bengkulu Selatan.</span></h1>
       <div class="hero-text">
-        <p class="lead">Kami CV. Manna Studio Code dari Kota Manna, penyedia jasa pembuatan aplikasi dan website. Kami membuat sistem informasi, aplikasi layanan publik, dan website untuk perangkat daerah, lalu melatih operatornya sampai aplikasinya benar-benar terpakai.</p>
+        <h1>Sistem informasi dan aplikasi untuk perangkat daerah.</h1>
+        <p class="lead">CV. Manna Studio Code membangun aplikasi pemantauan, layanan publik, dan website untuk instansi di Bengkulu Selatan. Kami bekerja dari Kota Manna, melatih operator Anda, dan tetap mendampingi setelah aplikasi dipakai.</p>
         <div class="cta">
-          <a class="btn" href="https://wa.me/6285266556231?text=Halo%20Manna%20Studio%20Code%2C%20saya%20ingin%20konsultasi" target="_blank" rel="noopener">Chat di WhatsApp</a>
-          <a class="btn btn-line" href="#pekerjaan">Lihat pekerjaan kami</a>
+          <a class="btn btn-kunyit" href="https://wa.me/6285266556231?text=Halo%20Manna%20Studio%20Code%2C%20saya%20ingin%20konsultasi" target="_blank" rel="noopener">Konsultasi gratis via WhatsApp</a>
+          <a class="btn btn-garis" href="#pekerjaan">Lihat pekerjaan kami</a>
         </div>
       </div>
-      <aside class="dipakai" aria-labelledby="dipakai-judul">
-        <h2 id="dipakai-judul">Sedang dipakai</h2>
-        <ul id="dipakai-list"><li class="muted-inv">Memuat…</li></ul>
-      </aside>
+
+      <figure class="layar">
+        <div class="layar-atas">
+          <span>Pemantauan realisasi</span>
+          <span class="layar-tag">Triwulan III</span>
+        </div>
+        <div class="layar-angka">
+          <div><small>Realisasi fisik</small><b>72,4%</b><span class="bar"><span style="width:72.4%"></span></span></div>
+          <div><small>Realisasi keuangan</small><b>64,1%</b><span class="bar bar-2"><span style="width:64.1%"></span></span></div>
+        </div>
+        <svg class="kurva" viewBox="0 0 320 120" role="img" aria-label="Kurva S: garis rencana dan garis realisasi yang masih di bawah rencana">
+          <g class="grid"><line x1="0" y1="30" x2="320" y2="30"/><line x1="0" y1="60" x2="320" y2="60"/><line x1="0" y1="90" x2="320" y2="90"/></g>
+          <path class="rencana" d="M0 115 C60 112 90 100 130 78 S220 22 320 8"/>
+          <path class="realisasi" d="M0 116 C60 114 95 106 135 90 S200 52 232 40"/>
+          <circle class="titik" cx="232" cy="40" r="5"/>
+        </svg>
+        <div class="kunci"><span class="k-rencana">Rencana</span><span class="k-realisasi">Realisasi</span></div>
+        <figcaption>Ilustrasi tampilan sistem pemantauan</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="klien" aria-labelledby="klien-judul">
+    <div class="wrap klien-in">
+      <h2 id="klien-judul">Sedang dipakai di</h2>
+      <ul id="klien-list"><li>Memuat…</li></ul>
     </div>
   </section>
 
   <section id="layanan" class="sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Yang kami kerjakan</h2>
+    <div class="wrap dua">
+      <div class="dua-kiri">
+        <h2>Layanan</h2>
         <p>Semua dikerjakan dari Kota Manna, jadi kami bisa datang untuk rapat, pelatihan, dan perbaikan.</p>
       </div>
       <dl class="layanan">
@@ -100,7 +124,7 @@
     </div>
   </section>
 
-  <section id="pekerjaan" class="sec sec-alt">
+  <section id="pekerjaan" class="sec sec-kabut">
     <div class="wrap">
       <div class="sec-head">
         <h2>Pekerjaan kami</h2>
@@ -131,12 +155,12 @@
       <div>
         <h2>Ceritakan kebutuhan kantor Anda.</h2>
         <p>Konsultasi pertama tidak dipungut biaya.</p>
-        <a class="wa" href="https://wa.me/6285266556231" target="_blank" rel="noopener">0852 6655 6231</a>
-        <p class="wa-note">WhatsApp atau telepon</p>
+        <a class="btn btn-kunyit" href="https://wa.me/6285266556231" target="_blank" rel="noopener">Chat di WhatsApp</a>
       </div>
-      <dl>
-        <dt>Alamat</dt><dd>Jl. SMKN 1 Bengkulu Selatan, RT.10, Ibul, Kota Manna, Bengkulu Selatan</dd>
-        <dt>Email</dt><dd><a href="mailto:mannastudiocode@gmail.com">mannastudiocode@gmail.com</a></dd>
+      <dl class="kontak-data">
+        <div><dt>WhatsApp / telepon</dt><dd><a href="https://wa.me/6285266556231" target="_blank" rel="noopener">0852 6655 6231</a></dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:mannastudiocode@gmail.com">mannastudiocode@gmail.com</a></dd></div>
+        <div><dt>Alamat</dt><dd>Jl. SMKN 1 Bengkulu Selatan, RT.10, Ibul, Kota Manna, Bengkulu Selatan</dd></div>
       </dl>
     </div>
   </section>
