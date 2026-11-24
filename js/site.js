@@ -57,21 +57,17 @@ function tampilPekerjaan(list) {
     </article>`).join('');
 
   $('#porto-list').innerHTML = list.filter(p => !p.masalah).map(p => `
-    <article class="proyek${p.gambar ? ' proyek-galeri' : ''}">
-      <div class="proyek-judul">
-        ${p.singkat ? `<span class="monogram" aria-hidden="true">${esc(p.singkat)}</span>` : ''}
-        <h3>${esc(p.judul)}</h3>
-        ${p.nama_panjang ? `<p class="proyek-panjang">${esc(p.nama_panjang)}</p>` : ''}
-        <p>${metaHtml(p)}</p>
-      </div>
-      <div class="proyek-isi">
-        <p>${esc(p.ringkas)}</p>
-        ${p.sebelum ? `<dl class="ubah"><div><dt>Sebelumnya</dt><dd>${esc(p.sebelum)}</dd></div><div><dt>Sekarang</dt><dd>${esc(p.sesudah)}</dd></div></dl>` : ''}
-        ${tagHtml(p)}
-      </div>
+    <article class="proyek">
+      ${p.singkat ? `<span class="monogram" aria-hidden="true">${esc(p.singkat)}</span>` : ''}
+      <h3>${esc(p.judul)}</h3>
+      <p class="proyek-klien">${esc(p.instansi)}${p.tahun ? ', ' + esc(p.tahun) : ''}</p>
+      <p class="proyek-satu">${esc(p.satu_baris || p.ringkas)}</p>
+      ${p.sebelum ? `<details class="proyek-ubah">
+        <summary>Sebelum &amp; sesudah</summary>
+        <dl><dt>Sebelumnya</dt><dd>${esc(p.sebelum)}</dd><dt>Sekarang</dt><dd>${esc(p.sesudah)}</dd></dl>
+      </details>` : ''}
       ${p.url ? `<a class="proyek-domain" href="${esc(p.url)}" target="_blank" rel="noopener" translate="no">${esc(p.domain)}</a>`
-        : p.domain ? `<span class="proyek-domain" translate="no">${esc(p.domain)}</span>` : '<span></span>'}
-      ${p.gambar ? `<div class="galeri">${p.gambar.map(g => gambarHtml(g)).join('')}</div>` : ''}
+        : p.domain ? `<span class="proyek-domain proyek-mati" translate="no" title="Situs sedang tidak bisa dibuka">${esc(p.domain)}</span>` : ''}
     </article>`).join('');
 }
 
@@ -89,18 +85,21 @@ function tampilKatalog(list) {
 
 /* ---------- Tentang kami ---------- */
 function tampilProfil(p) {
-  // Deretan 'Dipakai oleh': urutan dari profil.json, bila ada
+  // Deretan 'Bekerja sama dengan': urutan dari profil.json, bila ada
   if (Array.isArray(p.klien) && p.klien.length) $('#klien-list').innerHTML = p.klien.map(k => `<li>${esc(k)}</li>`).join('');
   $('#tentang-isi').innerHTML = `
-    ${p.tentang.map(t => `<p>${esc(t)}</p>`).join('')}
-    <dl class="legal">
-      <div><dt>Nama usaha</dt><dd>${esc(p.nama)}</dd></div>
-      <div><dt>Direktur</dt><dd>${esc(p.direktur)}</dd></div>
-      ${p.legalitas.map(l => `<div><dt>${esc(l.label)}</dt><dd>${esc(l.isi)}</dd></div>`).join('')}
-      <div><dt>Alamat</dt><dd>${esc(p.alamat)}</dd></div>
-    </dl>
-    ${p.kbli ? `<h3 class="kbli-judul">Bidang usaha (KBLI)</h3>
-    <ul class="kbli">${p.kbli.map(k => `<li><b>${esc(k.kode)}</b>${esc(k.nama)}</li>`).join('')}</ul>` : ''}`;
+    <p>${esc(p.tentang[0])}</p>
+    <details class="legal-detail">
+      <summary>Lihat data legalitas dan bidang usaha</summary>
+      <dl class="legal">
+        <div><dt>Nama usaha</dt><dd>${esc(p.nama)}</dd></div>
+        <div><dt>Direktur</dt><dd>${esc(p.direktur)}</dd></div>
+        ${p.legalitas.map(l => `<div><dt>${esc(l.label)}</dt><dd>${esc(l.isi)}</dd></div>`).join('')}
+        <div><dt>Alamat</dt><dd>${esc(p.alamat)}</dd></div>
+      </dl>
+      ${p.kbli ? `<h3 class="kbli-judul">Bidang usaha (KBLI)</h3>
+      <ul class="kbli">${p.kbli.map(k => `<li><b>${esc(k.kode)}</b>${esc(k.nama)}</li>`).join('')}</ul>` : ''}
+    </details>`;
 }
 
 Promise.all([ambil('portofolio.json'), ambil('katalog.json'), ambil('profil.json')])
