@@ -3,6 +3,7 @@
   const C = window.MSC_CONFIG || {};
   const DEMO = !C.SUPABASE_URL || !C.SUPABASE_ANON_KEY;
   const BUCKET = 'dokumen';
+  const CAP = 'pengaturan/cap-perusahaan';
   const sb = DEMO ? null : window.supabase.createClient(C.SUPABASE_URL, C.SUPABASE_ANON_KEY);
 
   // ---------- Mode demo: tabel di localStorage, file di IndexedDB ----------
@@ -112,6 +113,19 @@
       }
       const data = chk(await sb.storage.from(BUCKET).createSignedUrl(path, 600));
       return data.signedUrl;
+    },
+    // ---------- Cap perusahaan (disimpan privat, tidak di repo publik) ----------
+    async capUrl() {
+      try {
+        if (DEMO) { const blob = await idbDo('readonly', s => s.get(CAP)); return blob ? URL.createObjectURL(blob) : null; }
+        const { data, error } = await sb.storage.from(BUCKET).createSignedUrl(CAP, 900);
+        return error ? null : data.signedUrl;
+      } catch { return null; }
+    },
+    async simpanCap(file) {
+      if (!/^image\/(png|jpeg|svg\+xml|webp)$/.test(file.type)) throw new Error('Cap harus berupa gambar PNG, JPG, SVG, atau WebP.');
+      if (DEMO) { await idbDo('readwrite', s => s.put(file, CAP)); return; }
+      chk(await sb.storage.from(BUCKET).upload(CAP, file, { upsert: true, contentType: file.type, cacheControl: '60' }));
     },
     async removeFile(path) {
       if (DEMO) { await idbDo('readwrite', s => s.delete(path)); return; }

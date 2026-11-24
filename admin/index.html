@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://zkqowxhnytlkmqnkqwff.supabase.co wss://zkqowxhnytlkmqnkqwff.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; frame-src blob:; media-src blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://zkqowxhnytlkmqnkqwff.supabase.co wss://zkqowxhnytlkmqnkqwff.supabase.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://zkqowxhnytlkmqnkqwff.supabase.co; frame-src blob:; media-src blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Dashboard — Manna Studio Code</title>
-  <link rel="icon" href="../assets/msc-logo.png">
+  <link rel="icon" href="../assets/msc-mark.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
 </head>
@@ -16,7 +17,7 @@
 <!-- Login -->
 <section id="login" class="login" hidden>
   <form class="login-box" id="login-form">
-    <img src="../assets/msc-logo-400.png" alt="Manna Studio Code" width="400" height="120">
+    <p class="login-merek"><img src="../assets/msc-mark.svg" alt="" width="52" height="52"><span>Manna Studio Code</span></p>
     <h1>Masuk ke dashboard</h1>
     <label>Email<input type="email" name="email" required autocomplete="username" spellcheck="false" autocapitalize="off"></label>
     <label>Kata sandi<input type="password" name="password" required autocomplete="current-password"></label>
@@ -30,7 +31,7 @@
 <a class="skip" href="#view">Langsung ke isi</a>
 <div id="app" class="app" hidden>
   <aside class="side">
-    <img src="../assets/msc-logo-400.png" alt="Manna Studio Code" class="side-logo" width="400" height="120">
+    <p class="side-logo"><img src="../assets/msc-mark.svg" alt="" width="36" height="36"><span>Manna Studio Code</span></p>
     <nav id="menu" aria-label="Menu dashboard">
       <a href="#ringkasan">Ringkasan</a>
       <a href="#pelanggan">Pelanggan</a>

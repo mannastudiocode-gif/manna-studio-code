@@ -331,10 +331,10 @@
     };
   }
 
-  function dokInvoice(inv) {
+  function dokInvoice(inv, cap) {
     const p = pelangganOf(inv.pelanggan_id) || {};
     const h = hitung(inv);
-    const logo = new URL('../assets/msc-logo.png', location.href).href;
+    const logo = new URL('../assets/msc-mark.svg', location.href).href;
     return `<div class="inv">
       <div class="inv-kop">
         <img src="${logo}" alt="">
@@ -365,24 +365,48 @@
           ${inv.catatan ? `<p class="inv-cat">${esc(inv.catatan)}</p>` : ''}
           ${inv.status === 'lunas' ? `<div class="inv-lunas">LUNAS${inv.tanggal_bayar ? ' · ' + tgl(inv.tanggal_bayar) : ''}</div>` : ''}
         </div>
-        <div class="inv-ttd"><span>${esc(P.kota)}, ${tgl(inv.tanggal)}</span><span>${esc(P.nama)}</span><span>Direktur</span><div class="ruang"></div><b>${esc(P.direktur)}</b></div>
+        <div class="inv-ttd"><span>${esc(P.kota)}, ${tgl(inv.tanggal)}</span><span>${esc(P.nama)}</span><span>Direktur</span><div class="ruang">${cap ? `<img class="inv-cap" src="${esc(cap)}" alt="">` : ''}</div><b>${esc(P.direktur)}</b></div>
       </div>
     </div>`;
   }
 
-  function lihatInvoice(id) {
+  // Cap perusahaan: disimpan sekali di penyimpanan privat, dipakai di semua invoice
+  let capCache = null;
+  async function lihatInvoice(id) {
     const inv = cache.invoice.find(i => i.id === id);
+    if (capCache === null) capCache = (await DB.capUrl()) || '';
+    let pakaiCap = !!capCache;
     const b = modal('Invoice ' + inv.nomor, `
-      <div class="pv-bar"><button class="btn" id="cetak">🖨 Cetak / Simpan PDF</button><button class="btn btn-ghost" id="ubah">Ubah</button></div>
-      <div class="pv-kertas">${dokInvoice(inv)}</div>`, { wide: true });
+      <div class="pv-bar">
+        <div class="pv-cap" id="pv-cap"></div>
+        <button class="btn" id="cetak">🖨 Cetak / Simpan PDF</button><button class="btn btn-ghost" id="ubah">Ubah</button>
+      </div>
+      <div class="pv-kertas" id="pv-kertas"></div>
+      <input type="file" id="cap-file" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden>`, { wide: true });
+    const gambar = () => {
+      b.querySelector('#pv-kertas').innerHTML = dokInvoice(inv, pakaiCap ? capCache : '');
+      b.querySelector('#pv-cap').innerHTML = capCache
+        ? `<label><input type="checkbox" id="cap-on" ${pakaiCap ? 'checked' : ''}> Pakai cap</label><button type="button" class="btn btn-ghost" id="cap-ganti">Ganti cap</button>`
+        : `<button type="button" class="btn btn-ghost" id="cap-ganti">Pasang cap perusahaan</button>`;
+      const on = b.querySelector('#cap-on');
+      if (on) on.onchange = () => { pakaiCap = on.checked; gambar(); };
+      b.querySelector('#cap-ganti').onclick = () => b.querySelector('#cap-file').click();
+    };
+    b.querySelector('#cap-file').onchange = async e => {
+      const f = e.target.files[0]; if (!f) return;
+      await aman(async () => { await DB.simpanCap(f); capCache = (await DB.capUrl()) || ''; pakaiCap = !!capCache; }, 'Cap perusahaan tersimpan').catch(() => {});
+      e.target.value = '';
+      gambar();
+    };
+    gambar();
     b.querySelector('#ubah').onclick = () => { tutup(); formInvoice(inv); };
     b.querySelector('#cetak').onclick = () => {
-      $('#print-area').innerHTML = dokInvoice(inv);
+      $('#print-area').innerHTML = dokInvoice(inv, pakaiCap ? capCache : '');
       const judul = document.title;
       document.title = inv.nomor + ' - ' + (pelangganOf(inv.pelanggan_id)?.nama || 'invoice'); // nama file PDF
-      const img = $('#print-area img');
+      const imgs = [...$('#print-area').querySelectorAll('img')];
       const go = () => { window.print(); document.title = judul; };
-      img.complete ? go() : (img.onload = img.onerror = go);
+      Promise.all(imgs.map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))).then(go);
     };
   }
 
