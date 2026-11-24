@@ -103,14 +103,17 @@ figure { margin: 0; }
 .angka dt { color: var(--redup); font-size: 14.5px; }
 .angka dd { margin: 0; color: var(--tinta); font-size: 38px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
 
-.teknologi { display: flex; justify-content: space-between; gap: 20px 32px; margin-top: 56px; padding: 18px 26px; border: 1px solid var(--garis); border-radius: var(--sudut-besar); background: var(--putih); box-shadow: var(--bayang); }
-.tek-grup { display: flex; align-items: center; gap: 22px; }
-.tek-grup + .tek-grup { padding-left: 32px; border-left: 1px solid var(--garis); }
-.tek-grup p { margin: 0; color: var(--redup); font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.tek-grup ul { display: flex; gap: 24px; list-style: none; }
-.tek-grup li { display: flex; align-items: center; gap: 9px; }
-.tek-grup svg { width: 28px; height: 28px; flex-shrink: 0; }
-.tek-grup span { color: var(--tinta-2); font-size: 17px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+.teknologi { display: flex; align-items: center; gap: 10px; margin-top: 56px; padding: 18px 20px; border: 1px solid var(--garis); border-radius: var(--sudut-besar); background: var(--putih); box-shadow: var(--bayang); }
+.teknologi > p { flex-shrink: 0; margin: 0 14px 0 6px; color: var(--tinta); font-size: 18px; font-weight: 700; }
+.tek-daftar { display: flex; gap: 44px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; list-style: none; padding: 4px 2px; }
+.tek-daftar::-webkit-scrollbar { display: none; }
+.tek-daftar li { flex-shrink: 0; }
+.tek-btn { flex-shrink: 0; display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 50%; background: none; color: var(--redup); font-size: 24px; line-height: 1; cursor: pointer; transition: background-color .15s, transform .15s; }
+.tek-btn:hover { background: var(--kabut); color: var(--tinta); }
+.tek-btn:active { transform: scale(.94); }
+.tek-daftar li { display: flex; align-items: center; gap: 10px; }
+.tek-daftar svg { width: 30px; height: 30px; flex-shrink: 0; }
+.tek-daftar span { color: var(--tinta-2); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
 
 /* ---------- Bagian umum ---------- */
 .sec { padding: var(--jarak) 0; }
@@ -401,11 +404,6 @@ figure { margin: 0; }
   .cta .btn { width: 100%; }
   .angka { gap: 14px 30px; }
   .angka dd { font-size: 30px; }
-  .teknologi { flex-direction: column; margin-top: 40px; padding: 6px 18px; }
-  .tek-grup { justify-content: space-between; padding: 12px 0; }
-  .tek-grup + .tek-grup { padding-left: 0; border-left: 0; border-top: 1px solid var(--garis); }
-  .tek-grup ul { gap: 18px; }
-  .tek-grup span { font-size: 15px; }
   .hp { right: -6px; width: 168px; }
   .langkah { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .langkah::before { display: none; }
@@ -454,15 +452,10 @@ figure { margin: 0; }
 @media (min-width: 761px) and (prefers-reduced-motion: no-preference) { .wa-panel:not([hidden]) { animation-name: modal-muncul; } }
 @keyframes modal-muncul { from { opacity: 0; transform: translate(-50%, calc(-50% + 12px)) scale(.98); } }
 
-/* Pita teknologi: tablet bertumpuk per kelompok, HP label di atas logo */
-@media (max-width: 1040px) {
-  .teknologi { flex-direction: column; gap: 0; padding: 6px 22px; }
-  .tek-grup { padding: 14px 0; }
-  .tek-grup p { width: 92px; flex-shrink: 0; text-align: left; }
-  .tek-grup + .tek-grup { padding-left: 0; border-left: 0; border-top: 1px solid var(--garis); }
-}
+/* Pita teknologi di HP: label disembunyikan, logo lebih rapat */
 @media (max-width: 560px) {
-  .tek-grup { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .tek-grup p { width: auto; }
-  .tek-grup ul { flex-wrap: wrap; gap: 10px 20px; }
+  .teknologi { margin-top: 40px; padding: 12px 6px; gap: 2px; }
+  .teknologi > p { display: none; }
+  .tek-daftar { gap: 28px; }
+  .tek-daftar span { font-size: 16px; }
 }

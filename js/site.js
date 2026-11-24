@@ -19,6 +19,40 @@ menuBtn.addEventListener('click', () => {
 });
 document.querySelectorAll('.links a').forEach(a => a.addEventListener('click', tutupMenu));
 
+/* ---------- Pita logo teknologi: geser satu logo, berputar terus ---------- */
+(function () {
+  const daftar = $('.tek-daftar'); if (!daftar) return;
+  const asli = [...daftar.children];
+  // salinan logo agar putaran tidak terputus (disembunyikan dari pembaca layar)
+  asli.forEach(li => { const c = li.cloneNode(true); c.setAttribute('aria-hidden', 'true'); daftar.appendChild(c); });
+  const semua = () => [...daftar.children];
+  const awal = () => asli[0].offsetLeft;
+  const lebarSet = () => daftar.children[asli.length].offsetLeft - awal();
+  const geser = arah => {
+    // lompat diam-diam ke salinan yang setara agar putaran tak berujung
+    if (arah > 0 && daftar.scrollLeft >= lebarSet() - 2) daftar.scrollTo({ left: daftar.scrollLeft - lebarSet(), behavior: 'instant' });
+    if (arah < 0 && daftar.scrollLeft <= 2) daftar.scrollTo({ left: daftar.scrollLeft + lebarSet(), behavior: 'instant' });
+    const posisi = semua().map(li => li.offsetLeft - awal());
+    const kini = daftar.scrollLeft;
+    const sasaran = arah > 0 ? posisi.find(x => x > kini + 2) : [...posisi].reverse().find(x => x < kini - 2);
+    if (sasaran !== undefined) daftar.scrollTo({ left: sasaran, behavior: 'smooth' });
+  };
+  let tahan = false, jalan = null;
+  const mulai = () => {
+    clearInterval(jalan);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    jalan = setInterval(() => { if (!tahan && !document.hidden) geser(1); }, 2500);
+  };
+  $('.tek-kiri').addEventListener('click', () => { geser(-1); mulai(); });
+  $('.tek-kanan').addEventListener('click', () => { geser(1); mulai(); });
+  const pita = daftar.closest('.teknologi');
+  pita.addEventListener('mouseenter', () => { tahan = true; });
+  pita.addEventListener('mouseleave', () => { tahan = false; });
+  daftar.addEventListener('focusin', () => { tahan = true; });
+  daftar.addEventListener('focusout', () => { tahan = false; });
+  mulai();
+})();
+
 /* ---------- Ilustrasi kartu pekerjaan (bukan tangkapan layar asli) ---------- */
 function ilustrasi(jenis) {
   const ulang = (n, f) => Array.from({ length: n }, (_, i) => f(i)).join('');
