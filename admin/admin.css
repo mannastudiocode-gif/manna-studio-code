@@ -391,3 +391,8 @@ main { min-width: 0; padding: 28px 36px 64px; }
   #print-area .inv { min-height: auto; }
   .inv-tbl th, .inv-tbl .grand td, .inv-terbilang { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+
+/* Cap perusahaan */
+.head-aksi { display: flex; flex-wrap: wrap; gap: 8px; }
+.cap-pratinjau { display: grid; place-items: center; min-height: 180px; margin: 12px 0; border: 1px dashed var(--garis); border-radius: var(--sudut); background: var(--kabut); }
+.cap-pratinjau img { width: 170px; height: 170px; object-fit: contain; }

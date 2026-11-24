@@ -213,7 +213,7 @@
   // ---------------- Halaman: Invoice ----------------
   function vInvoice() {
     $('#view').innerHTML = `
-      <div class="head"><h1>Invoice</h1><button class="btn" id="tambah">+ Buat invoice</button></div>
+      <div class="head"><h1>Invoice</h1><div class="head-aksi"><button class="btn btn-ghost" id="atur-cap">Cap perusahaan</button><button class="btn" id="tambah">+ Buat invoice</button></div></div>
       <div class="filter">
         <input type="search" id="cari" aria-label="Cari invoice" placeholder="Cari nomor, pelanggan, perihal…">
         <select id="fst" aria-label="Saring status"><option value="">Semua status</option>${Object.entries(STATUS).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select>
@@ -249,6 +249,7 @@
     };
     ['cari', 'fst', 'fth'].forEach(id => $('#' + id).oninput = render);
     $('#tambah').onclick = () => cache.pelanggan.length ? formInvoice() : toast('Invoice butuh data pelanggan. Tambahkan pelanggan dulu di menu Pelanggan.', true);
+    $('#atur-cap').onclick = aturCap;
     render();
   }
 
@@ -372,6 +373,25 @@
 
   // Cap perusahaan: disimpan sekali di penyimpanan privat, dipakai di semua invoice
   let capCache = null;
+  async function aturCap() {
+    if (capCache === null) capCache = (await DB.capUrl()) || '';
+    const b = modal('Cap perusahaan', `
+      <p class="muted">Cap ini muncul di bagian tanda tangan setiap invoice. Filenya disimpan privat, hanya bisa dibuka admin yang login.</p>
+      <div class="cap-pratinjau" id="cap-pv"></div>
+      <div class="form-act"><button type="button" class="btn" id="cap-pilih"></button></div>
+      <input type="file" id="cap-file" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden>`);
+    const gambar = () => {
+      b.querySelector('#cap-pv').innerHTML = capCache ? `<img src="${esc(capCache)}" alt="Cap perusahaan saat ini">` : '<p class="kosong">Belum ada cap. Pilih file gambar cap (PNG berlatar transparan paling bagus).</p>';
+      b.querySelector('#cap-pilih').textContent = capCache ? 'Ganti cap' : 'Pilih file cap';
+    };
+    b.querySelector('#cap-pilih').onclick = () => b.querySelector('#cap-file').click();
+    b.querySelector('#cap-file').onchange = async e => {
+      const f = e.target.files[0]; if (!f) return;
+      await aman(async () => { await DB.simpanCap(f); capCache = (await DB.capUrl()) || ''; }, 'Cap perusahaan tersimpan').catch(() => {});
+      e.target.value = ''; gambar();
+    };
+    gambar();
+  }
   async function lihatInvoice(id) {
     const inv = cache.invoice.find(i => i.id === id);
     if (capCache === null) capCache = (await DB.capUrl()) || '';
