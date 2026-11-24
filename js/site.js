@@ -66,7 +66,7 @@ function tampilPekerjaan(list) {
   aturGeser();
 }
 
-/* Carousel pekerjaan: per halaman, titik penanda, geser otomatis pelan */
+/* Carousel pekerjaan: geser satu kartu, titik penanda halaman, geser otomatis */
 function aturGeser() {
   const daftar = $('#porto-list'), kiri = $('.geser-kiri'), kanan = $('.geser-kanan'), titik = $('.geser-titik');
   const kartu = () => [...daftar.querySelectorAll('.proyek')];
@@ -101,13 +101,19 @@ function aturGeser() {
     const h = halamanKini();
     [...titik.children].forEach((b, i) => b.setAttribute('aria-current', i === h ? 'true' : 'false'));
   };
-  kiri.addEventListener('click', () => { berhenti(); ke(halamanKini() - 1); });
-  kanan.addEventListener('click', () => { berhenti(); ke(halamanKini() + 1); });
+  // geser satu kartu; di ujung kanan kembali ke kartu pertama
+  const jarakKartu = () => { const k = kartu(); return k.length > 1 ? k[1].offsetLeft - k[0].offsetLeft : daftar.clientWidth; };
+  const satu = arah => {
+    if (arah > 0 && daftar.scrollLeft + daftar.clientWidth >= daftar.scrollWidth - 4) daftar.scrollTo({ left: 0, behavior: 'smooth' });
+    else daftar.scrollBy({ left: arah * jarakKartu(), behavior: 'smooth' });
+  };
+  kiri.addEventListener('click', () => { berhenti(); satu(-1); });
+  kanan.addEventListener('click', () => { berhenti(); satu(1); });
   daftar.addEventListener('scroll', perbarui, { passive: true });
   window.addEventListener('resize', buatTitik);
   buatTitik();
 
-  // Geser otomatis tiap 5 detik; berhenti saat disentuh/diarahkan kursor, tidak jalan bila gerak dikurangi
+  // Geser otomatis satu kartu tiap 3 detik; berhenti saat disentuh/diarahkan kursor, tidak jalan bila gerak dikurangi
   let jalan = null, tahan = false;
   const berhenti = () => { clearInterval(jalan); jalan = null; };
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -119,8 +125,8 @@ function aturGeser() {
     if (tahan || document.hidden) return;
     const r = daftar.getBoundingClientRect();
     if (r.bottom < 0 || r.top > innerHeight) return; // hanya saat terlihat
-    ke(halamanKini() + 1);
-  }, 5000);
+    satu(1);
+  }, 3000);
 }
 
 /* ---------- e-Katalog ---------- */
