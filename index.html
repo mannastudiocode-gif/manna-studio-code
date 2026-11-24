@@ -200,10 +200,15 @@
         <h2>Pekerjaan kami</h2>
         <p>Aplikasi yang sudah kami serahkan dan sedang dipakai.</p>
       </div>
-      <div class="geser">
-        <button type="button" class="geser-btn geser-kiri" aria-label="Geser ke kiri" disabled>‹</button>
+      <div class="geser" aria-roledescription="carousel" aria-label="Pekerjaan kami">
         <div class="porto" id="porto-list" tabindex="0" aria-label="Daftar pekerjaan, bisa digeser"><p class="muted">Memuat…</p></div>
-        <button type="button" class="geser-btn geser-kanan" aria-label="Geser ke kanan">›</button>
+        <div class="geser-kendali">
+          <div class="geser-titik" role="group" aria-label="Pilih halaman"></div>
+          <div class="geser-tombol">
+            <button type="button" class="geser-btn geser-kiri" aria-label="Pekerjaan sebelumnya" disabled>‹</button>
+            <button type="button" class="geser-btn geser-kanan" aria-label="Pekerjaan berikutnya">›</button>
+          </div>
+        </div>
       </div>
 
       <div class="ajak-kotak">

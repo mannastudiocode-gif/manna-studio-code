@@ -66,19 +66,61 @@ function tampilPekerjaan(list) {
   aturGeser();
 }
 
-/* Tombol geser kiri/kanan untuk daftar pekerjaan */
+/* Carousel pekerjaan: per halaman, titik penanda, geser otomatis pelan */
 function aturGeser() {
-  const daftar = $('#porto-list'), kiri = $('.geser-kiri'), kanan = $('.geser-kanan');
-  const langkah = () => (daftar.querySelector('.proyek')?.getBoundingClientRect().width || 300) + 20;
+  const daftar = $('#porto-list'), kiri = $('.geser-kiri'), kanan = $('.geser-kanan'), titik = $('.geser-titik');
+  const kartu = () => [...daftar.querySelectorAll('.proyek')];
+  // jumlah kartu yang terlihat penuh = satu halaman
+  const perHalaman = () => {
+    const k = kartu(); if (k.length < 2) return 1;
+    const jarak = k[1].offsetLeft - k[0].offsetLeft;
+    return Math.max(1, Math.round((daftar.clientWidth + 20) / jarak));
+  };
+  const jumlahHalaman = () => Math.ceil(kartu().length / perHalaman());
+  const halamanKini = () => {
+    if (daftar.scrollLeft + daftar.clientWidth >= daftar.scrollWidth - 4) return jumlahHalaman() - 1;
+    const k = kartu(), jarak = k.length > 1 ? k[1].offsetLeft - k[0].offsetLeft : 1;
+    return Math.round(daftar.scrollLeft / jarak / perHalaman());
+  };
+  const ke = i => {
+    const k = kartu(), n = jumlahHalaman();
+    i = (i + n) % n;
+    const sasaran = k[Math.min(i * perHalaman(), k.length - 1)];
+    daftar.scrollTo({ left: sasaran.offsetLeft - k[0].offsetLeft, behavior: 'smooth' });
+  };
+  const buatTitik = () => {
+    const n = jumlahHalaman();
+    titik.innerHTML = Array.from({ length: n }, (_, i) => `<button type="button" aria-label="Halaman ${i + 1} dari ${n}"></button>`).join('');
+    titik.hidden = n < 2;
+    [...titik.children].forEach((b, i) => b.addEventListener('click', () => { berhenti(); ke(i); }));
+    perbarui();
+  };
   const perbarui = () => {
     kiri.disabled = daftar.scrollLeft <= 4;
     kanan.disabled = daftar.scrollLeft + daftar.clientWidth >= daftar.scrollWidth - 4;
+    const h = halamanKini();
+    [...titik.children].forEach((b, i) => b.setAttribute('aria-current', i === h ? 'true' : 'false'));
   };
-  kiri.addEventListener('click', () => daftar.scrollBy({ left: -langkah(), behavior: 'smooth' }));
-  kanan.addEventListener('click', () => daftar.scrollBy({ left: langkah(), behavior: 'smooth' }));
+  kiri.addEventListener('click', () => { berhenti(); ke(halamanKini() - 1); });
+  kanan.addEventListener('click', () => { berhenti(); ke(halamanKini() + 1); });
   daftar.addEventListener('scroll', perbarui, { passive: true });
-  window.addEventListener('resize', perbarui);
-  perbarui();
+  window.addEventListener('resize', buatTitik);
+  buatTitik();
+
+  // Geser otomatis tiap 5 detik; berhenti saat disentuh/diarahkan kursor, tidak jalan bila gerak dikurangi
+  let jalan = null, tahan = false;
+  const berhenti = () => { clearInterval(jalan); jalan = null; };
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const geserWrap = daftar.closest('.geser');
+  geserWrap.addEventListener('mouseenter', () => { tahan = true; });
+  geserWrap.addEventListener('mouseleave', () => { tahan = false; });
+  ['pointerdown', 'focusin', 'wheel', 'touchstart'].forEach(ev => daftar.addEventListener(ev, berhenti, { passive: true }));
+  jalan = setInterval(() => {
+    if (tahan || document.hidden) return;
+    const r = daftar.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return; // hanya saat terlihat
+    ke(halamanKini() + 1);
+  }, 5000);
 }
 
 /* ---------- e-Katalog ---------- */
