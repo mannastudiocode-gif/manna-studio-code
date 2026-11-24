@@ -1,0 +1,58 @@
+/* Gaya widget chat AI "Tanya kami" (belum dipakai). Untuk memasang: tautkan berkas ini dan js/chat.js di index.html. */
+/* ==========================================================================
+   Widget "Tanya kami"
+   ========================================================================== */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.tanya { position: fixed; right: 20px; bottom: 20px; z-index: 40; font-family: var(--huruf); }
+.tanya-buka {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 52px; padding: 0 22px 0 18px;
+  border: 0; border-radius: 99px;
+  background: var(--kunyit); color: var(--tinta);
+  font: 700 16px var(--huruf); cursor: pointer;
+  box-shadow: 0 14px 34px -12px rgba(15, 61, 62, .55);
+  transition: background-color .15s;
+}
+.tanya-buka:hover { background: var(--kunyit-2); }
+.tanya-buka svg { width: 22px; height: 22px; }
+.tanya.terbuka .tanya-buka { display: none; }
+
+.tanya-panel {
+  display: flex; flex-direction: column;
+  width: 380px; height: min(600px, calc(100vh - 40px));
+  overflow: hidden;
+  border-radius: var(--sudut-besar);
+  background: var(--putih); color: var(--tinta);
+  box-shadow: 0 30px 80px -24px rgba(10, 30, 31, .6);
+}
+.tanya-panel[hidden] { display: none; }
+.tanya-atas { display: flex; align-items: flex-start; gap: 12px; padding: 16px 14px 14px 18px; background: var(--laut); color: var(--putih); }
+.tanya-atas h2 { margin: 0; font-size: 17px; letter-spacing: -0.01em; }
+.tanya-atas p { margin: 4px 0 0; color: var(--muda-di-laut); font-size: 13px; line-height: 1.45; }
+.tanya-atas a { color: var(--putih); }
+.tanya-tutup { flex-shrink: 0; width: 40px; height: 40px; margin-left: auto; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .1); color: var(--putih); font-size: 24px; line-height: 1; cursor: pointer; }
+.tanya-tutup:hover { background: rgba(255, 255, 255, .2); }
+.tanya :focus-visible { outline: 3px solid var(--kunyit); outline-offset: 2px; }
+
+.tanya-isi { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 16px; overflow-y: auto; overscroll-behavior: contain; background: var(--kabut); }
+.tanya-gel { max-width: 86%; padding: 10px 13px; border-radius: 14px; font-size: 15px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.tanya-asisten { align-self: flex-start; background: var(--putih); border: 1px solid var(--garis); border-top-left-radius: 4px; }
+.tanya-saya { align-self: flex-end; background: var(--laut-2); color: var(--putih); border-top-right-radius: 4px; }
+.tanya-mengetik:empty::after { content: 'Mengetik…'; color: var(--redup); font-style: italic; }
+.tanya-saran { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 4px; }
+.tanya-saran button { padding: 8px 12px; border: 1.5px solid var(--laut-2); border-radius: 99px; background: var(--putih); color: var(--laut-2); font: 600 14px var(--huruf); text-align: left; cursor: pointer; }
+.tanya-saran button:hover { background: var(--tag-bg); }
+
+.tanya-form { display: flex; align-items: flex-end; gap: 8px; padding: 12px; border-top: 1px solid var(--garis); }
+.tanya-form textarea { flex: 1; max-height: 120px; padding: 10px 12px; border: 1.5px solid #7F918F; border-radius: 12px; font: 400 15px/1.4 var(--huruf); color: var(--tinta); resize: none; }
+.tanya-form textarea:focus { outline: none; border-color: var(--laut-2); box-shadow: 0 0 0 3px rgba(227, 167, 47, .45); }
+.tanya-kirim { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--laut); color: var(--putih); cursor: pointer; }
+.tanya-kirim:hover { background: var(--laut-2); }
+.tanya-kirim:disabled { opacity: .5; cursor: progress; }
+.tanya-kirim svg { width: 20px; height: 20px; }
+
+@media (max-width: 760px) {
+  .tanya { right: 12px; bottom: 12px; }
+  .tanya.terbuka { left: 0; right: 0; bottom: 0; }
+  .tanya-panel { width: 100%; height: min(82vh, 640px); border-radius: var(--sudut-besar) var(--sudut-besar) 0 0; }
+}
