@@ -94,10 +94,31 @@ figure { margin: 0; }
   position: relative; overflow: hidden; isolation: isolate;
   padding: 84px 0 56px; text-align: center;
   background:
-    radial-gradient(520px 520px at 8% 20%, rgba(59, 130, 246, .10), transparent 70%),
-    radial-gradient(620px 620px at 96% 70%, rgba(59, 130, 246, .12), transparent 70%),
-    var(--putih);
+    radial-gradient(560px 480px at 6% 18%, rgba(59, 130, 246, .16), transparent 70%),
+    radial-gradient(640px 560px at 98% 72%, rgba(59, 130, 246, .16), transparent 70%),
+    radial-gradient(420px 360px at 22% 96%, rgba(245, 165, 36, .14), transparent 70%),
+    linear-gradient(180deg, #F4F8FF 0%, var(--putih) 100%);
 }
+/* Latar: kisi halus seperti kertas rancangan, memudar ke tepi */
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background-image:
+    linear-gradient(rgba(29, 100, 216, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 100, 216, .07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 30%, transparent 80%);
+}
+/* Kubus garis (dari logo) di sisi kiri & kanan */
+.hero-hias { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.hero-hias .kubus { position: absolute; fill: none; stroke-width: 2.2; stroke-linejoin: round; }
+.hero-hias .k1 { left: 2.5%; top: 9%; width: 110px; stroke: rgba(29, 100, 216, .28); transform: rotate(-10deg); }
+.hero-hias .k2 { left: 11%; top: 58%; width: 64px; stroke: rgba(245, 165, 36, .55); transform: rotate(8deg); }
+.hero-hias .k3 { right: 6%; top: 22%; width: 84px; stroke: rgba(245, 165, 36, .5); transform: rotate(12deg); }
+.hero-hias .k4 { right: 9%; top: 52%; width: 140px; stroke: rgba(29, 100, 216, .24); transform: rotate(-6deg); }
+@media (max-width: 1040px) { .hero-hias .k2, .hero-hias .k3 { display: none; } .hero-hias .k1 { left: -30px; width: 90px; } .hero-hias .k4 { right: -40px; width: 110px; } }
+@media (max-width: 560px) { .hero-hias { display: none; } }
 .hero h1 { font-size: clamp(36px, 5.6vw, 64px); letter-spacing: -0.03em; }
 .hero-sub { margin: 10px 0 0; color: var(--biru); font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; letter-spacing: -0.01em; }
 .lead { max-width: 40em; margin: 18px auto 32px; color: var(--tinta-2); font-size: 18.5px; }
